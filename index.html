@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>AI Humanizer | Make AI Text Sound Human</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(145deg, #f5f7ff 0%, #e9eef5 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(102, 126, 234, 0.15);
+            color: #5a67d8;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(4px);
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1a1a2e 0%, #4a4e69 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.75rem;
+        }
+
+        .subhead {
+            color: #5a6874;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(2px);
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.01);
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 30px 45px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            padding: 1.5rem 1.8rem;
+            background: #ffffff;
+            border-bottom: 1px solid #edf2f7;
+        }
+
+        .card-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a202c;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-header p {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+
+        .card-content {
+            padding: 1.8rem;
+        }
+
+        /* Textarea */
+        .ai-textarea {
+            width: 100%;
+            min-height: 320px;
+            padding: 1.2rem;
+            font-size: 1rem;
+            line-height: 1.6;
+            font-family: inherit;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 1.2rem;
+            background: #fefefe;
+            resize: vertical;
+            transition: all 0.2s;
+            color: #2d3748;
+        }
+
+        .ai-textarea:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        /* Output Box - LARGE & CLEAN */
+        .output-box {
+            background: #f8fafc;
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            min-height: 380px;
+            max-height: 550px;
+            overflow-y: auto;
+            border: 1.5px solid #e2e8f0;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #1a202c;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: inherit;
+        }
+
+        .output-placeholder {
+            color: #94a3b8;
+            font-style: normal;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.8rem;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 3rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            background: #f1f5f9;
+            color: #334155;
+        }
+
+        .btn-primary {
+            background: linear-gradient(105deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.35);
+        }
+
+        .btn-secondary {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+        }
+
+        .btn-secondary:hover {
+            background: #f8fafc;
+            border-color: #94a3b8;
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        /* Character counter */
+        .char-counter {
+            text-align: right;
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-top: 0.5rem;
+        }
+
+        /* Loading */
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 1rem;
+            padding: 0.8rem;
+            background: #f1f0ff;
+            border-radius: 2rem;
+            color: #4f46e5;
+            font-weight: 500;
+        }
+
+        /* Error */
+        .error {
+            display: none;
+            color: #dc2626;
+            background: #fef2f2;
+            border-radius: 1rem;
+            padding: 0.8rem 1.2rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            border-left: 3px solid #ef4444;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 2.5rem;
+            color: #6c757d;
+            font-size: 0.8rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .card-content {
+                padding: 1.2rem;
+            }
+            .ai-textarea {
+                min-height: 240px;
+            }
+            .output-box {
+                min-height: 280px;
+                max-height: 450px;
+            }
+            .button-group {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="badge">✨ Human‑level fluency · No AI patterns</div>
+        <h1>AI Humanizer</h1>
+        <div class="subhead">Make AI text sound natural, authentic & undetectable — in seconds.</div>
+    </div>
+
+    <div class="grid">
+        <!-- LEFT: Input -->
+        <div class="card">
+            <div class="card-header">
+                <h2>📄 Step 1 · Paste AI text</h2>
+                <p>ChatGPT, Claude, Gemini or any AI output</p>
+            </div>
+            <div class="card-content">
+                <textarea id="aiInput" class="ai-textarea" placeholder="Paste your AI-generated text here...&#10;&#10;Example:&#10;Moreover, leveraging artificial intelligence in the resume creation process can significantly enhance one's chances of securing gainful employment..."></textarea>
+                <div class="char-counter">
+                    📝 <span id="charCount">0</span> characters
+                </div>
+                <div class="button-group">
+                    <button id="humanizeBtn" class="btn btn-primary">✨ Humanize Text</button>
+                    <button id="clearBtn" class="btn btn-secondary">🗑️ Clear</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT: Output -->
+        <div class="card">
+            <div class="card-header">
+                <h2>🧠 Step 2 · Human‑like result</h2>
+                <p>Ready to copy — natural, conversational, readable</p>
+            </div>
+            <div class="card-content">
+                <div id="outputContainer" class="output-box">
+                    <div class="output-placeholder">
+                        ✨ Your humanized text will appear here<br>— genuine, natural, and ready to use.
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button id="copyBtn" class="btn btn-secondary" disabled>📋 Copy to clipboard</button>
+                </div>
+                <div id="loadingMsg" class="loading">🤖 Rewriting with natural tone ...</div>
+                <div id="errorMsg" class="error"></div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        ⚡ Instant · No login · 100% private · Uses Groq Llama 3 (30 req/min free)
+    </div>
+</div>
+
+<script>
+    // ---------- YOUR API KEY IS SAFE HERE ----------
+    const GROQ_API_KEY = "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";
+    // ---------- 🔐 DO NOT SHARE THIS KEY PUBLICLY ----------
+
+    const inputTextarea = document.getElementById('aiInput');
+    const humanizeBtn = document.getElementById('humanizeBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const copyBtn = document.getElementById('copyBtn');
+    const outputContainer = document.getElementById('outputContainer');
+    const loadingMsg = document.getElementById('loadingMsg');
+    const errorMsgDiv = document.getElementById('errorMsg');
+    const charCountSpan = document.getElementById('charCount');
+
+    // Character counter
+    function updateCharCount() {
+        charCountSpan.innerText = inputTextarea.value.length;
+    }
+    inputTextarea.addEventListener('input', updateCharCount);
+    updateCharCount();
+
+    // Clear button
+    clearBtn.addEventListener('click', () => {
+        inputTextarea.value = '';
+        updateCharCount();
+        outputContainer.innerHTML = '<div class="output-placeholder">✨ Your humanized text will appear here<br>— genuine, natural, and ready to use.</div>';
+        copyBtn.disabled = true;
+        errorMsgDiv.style.display = 'none';
+    });
+
+    // The secret sauce prompt (no AI fingerprint)
+    const SYSTEM_PROMPT = `You are a text humanizer. Rewrite the following AI-generated text so it sounds like a real person wrote it naturally.
+
+CRITICAL RULES (follow strictly):
+1. Use short & medium sentences (3–18 words)
+2. Start sentences with "And", "But", "So", "Honestly", "Look" when it feels right
+3. Use contractions: don't, can't, won't, it's, that's, we'll, you'll
+4. NEVER use: moreover, furthermore, consequently, nonetheless, thus, hence
+5. Add occasional small fillers: "basically", "you know", "like", "I mean"
+6. Keep the core meaning but make it conversational, as if explaining to a friend
+7. Do NOT use emojis, markdown, or bullet points
+8. Output ONLY the rewritten text — no explanations, no quotes around it.
+
+Here is the text to humanize:`;
+
+    async function humanizeWithGroq(rawText) {
+        const url = 'https://api.groq.com/openai/v1/chat/completions';
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${GROQ_API_KEY}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                model: 'llama-3.3-70b-versatile',
+                messages: [
+                    { role: 'system', content: SYSTEM_PROMPT },
+                    { role: 'user', content: rawText }
+                ],
+                temperature: 0.75,
+                max_tokens: 2500,
+            })
+        });
+
+        if (!response.ok) {
+            const errData = await response.json().catch(() => ({}));
+            throw new Error(errData.error?.message || `API error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const humanized = data.choices[0]?.message?.content;
+        if (!humanized) throw new Error('Empty response from AI');
+        return humanized;
+    }
+
+    // Main action
+    humanizeBtn.addEventListener('click', async () => {
+        const userText = inputTextarea.value.trim();
+
+        if (!userText) {
+            errorMsgDiv.innerText = '❌ Please paste some AI-generated text first.';
+            errorMsgDiv.style.display = 'block';
+            return;
+        }
+
+        if (userText.length < 20) {
+            errorMsgDiv.innerText = '❌ For best results, please enter at least 20 characters.';
+            errorMsgDiv.style.display = 'block';
+            return;
+        }
+
+        // UI reset
+        errorMsgDiv.style.display = 'none';
+        loadingMsg.style.display = 'block';
+        humanizeBtn.disabled = true;
+        copyBtn.disabled = true;
+
+        outputContainer.innerHTML = '<div style="padding: 2rem; text-align: center;">🧠 Humanizing... rewriting naturally</div>';
+
+        try {
+            const result = await humanizeWithGroq(userText);
+            outputContainer.innerHTML = result.replace(/\n/g, '<br>');
+            copyBtn.disabled = false;
+        } catch (err) {
+            console.error(err);
+            let friendlyError = '⚠️ Something went wrong. ';
+            if (err.message.includes('API key') || err.message.includes('unauthorized')) {
+                friendlyError = '🔑 API key error. Please update the key in the script.';
+            } else if (err.message.includes('rate') || err.message.includes('quota')) {
+                friendlyError = '⏳ Rate limit reached (30/min). Please wait ~30 seconds and try again.';
+            } else {
+                friendlyError += err.message;
+            }
+            errorMsgDiv.innerText = friendlyError;
+            errorMsgDiv.style.display = 'block';
+            outputContainer.innerHTML = '<div class="output-placeholder">⚠️ Failed to humanize. Check error message above.</div>';
+        } finally {
+            loadingMsg.style.display = 'none';
+            humanizeBtn.disabled = false;
+        }
+    });
+
+    // Copy button
+    copyBtn.addEventListener('click', async () => {
+        const outputText = outputContainer.innerText;
+        if (!outputText || outputText.includes('humanized text will appear here') || outputText.includes('Failed')) {
+            errorMsgDiv.innerText = '❌ Nothing to copy yet. Generate text first.';
+            errorMsgDiv.style.display = 'block';
+            setTimeout(() => { errorMsgDiv.style.display = 'none'; }, 2000);
+            return;
+        }
+        try {
+            await navigator.clipboard.writeText(outputText);
+            copyBtn.innerText = '✅ Copied!';
+            setTimeout(() => { copyBtn.innerText = '📋 Copy to clipboard'; }, 2000);
+        } catch (err) {
+            errorMsgDiv.innerText = '❌ Could not copy. Manual copy works.';
+            errorMsgDiv.style.display = 'block';
+        }
+    });
+</script>
+</body>
+</html>
