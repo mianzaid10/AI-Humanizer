@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+.turbo/
+
+# Cache directories
+.vercel/
+.cache/
+.parcel-cache/
+
+# Build info
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+
+# Environment variables
+.env
+.env.local
+.env.production.local
+.env.development.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
