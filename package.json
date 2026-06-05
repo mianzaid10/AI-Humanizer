@@ -1,0 +1,27 @@
+{
+  "name": "ai-humanizer",
+  "version": "1.0.0",
+  "description": "Free AI Humanizer - Make AI Text Sound Human",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mianzaid10/AI-Humanizer.git"
+  },
+  "keywords": [
+    "ai-humanizer",
+    "chatgpt",
+    "ai-detector"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mianzaid10/AI-Humanizer/issues"
+  },
+  "homepage": "https://github.com/mianzaid10/AI-Humanizer#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
