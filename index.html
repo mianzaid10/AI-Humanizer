@@ -459,19 +459,30 @@
         errorMsgDiv.style.display = 'none';
     });
 
-    const SYSTEM_PROMPT = `You are an expert text humanizer. Rewrite the following AI-generated text to sound like a real person wrote it naturally.
+  const SYSTEM_PROMPT = `You are an expert text humanizer. Rewrite the following AI-generated text to sound 100% human.
 
-IMPORTANT RULES (Follow strictly):
-1. Use short & medium sentences (3-18 words)
-2. Start sentences naturally with "And", "But", "So", "Honestly", "Look", "You know" when appropriate
-3. Use contractions: don't, can't, won't, it's, that's, we'll, you'll
-4. NEVER use these AI words: moreover, furthermore, consequently, nonetheless, thus, hence, delve, tapestry
-5. Add occasional casual words: "basically", "you know", "like", "I mean", "honestly"
-6. Keep the core meaning but make it conversational
-7. Do NOT use emojis, markdown, or bullet points
-8. Output ONLY the rewritten text - no explanations, no quotes
+CRITICAL RULES (Follow STRICTLY):
 
-Text to humanize:`;
+1. **Sentence Length:** Mix very short (2-5 words) and medium (8-15 words) sentences. Never use perfectly uniform length.
+
+2. **Vocabulary:** 
+   - NEVER use: moreover, furthermore, consequently, nonetheless, thus, hence, delve, tapestry
+   - Replace formal words with casual ones: "utilize" → "use", "demonstrate" → "show"
+   - Add occasional fillers: "basically", "honestly", "you know", "like", "I mean"
+
+3. **Grammar:**
+   - Use contractions EVERYWHERE: don't, can't, won't, it's, that's, we'll, you'll
+   - Start sentences with "And", "But", "So", "Honestly", "Look"
+   - Use sentence fragments sometimes (e.g., "Not really.")
+
+4. **Structure:**
+   - Break long paragraphs into shorter ones (2-3 sentences max)
+   - Add rhetorical questions occasionally
+   - Use "—" dashes for emphasis
+
+5. **Output ONLY the rewritten text. No explanations, no quotes.**
+
+Here is the text to humanize:`;
 
     async function humanizeWithGroq(rawText) {
         const url = 'https://api.groq.com/openai/v1/chat/completions';
