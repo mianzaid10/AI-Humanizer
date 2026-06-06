@@ -1,0 +1,31 @@
+# Free AI Humanizer
+
+## Quick Summary
+Free AI tool that rewrites ChatGPT, Gemini, and Claude text to sound human. Bypass Turnitin, GPTZero. No login. No cost. Instant results.
+
+## Core Pages
+- Home: https://freeaihumanizer.online/
+- Tool: https://freeaihumanizer.online/
+
+## What This Tool Does
+Takes AI-generated text and rewrites it to sound like a real person wrote it. Uses natural language patterns, contractions, and conversational tone.
+
+## Key Features
+- 100% free
+- No login required
+- Bypasses AI detectors
+- 2-5 second results
+- Privacy focused (no text storage)
+
+## Target Keywords
+AI humanizer, humanize AI text, free AI humanizer, bypass AI detector, make AI text sound human, ChatGPT humanizer, undetectable AI, turn AI to human text
+
+## FAQ
+### Is it really free?
+Yes, completely free with no signup or credit card required.
+
+### Which AI models does it work with?
+ChatGPT, Google Gemini, Claude, Llama, and any AI text generator.
+
+### Does it bypass Turnitin?
+Yes, it's designed to bypass Turnitin, GPTZero, and Originality.ai.
