@@ -1,3 +1,5 @@
+Specification: [AI Visibility](https://www.ai-visibility.org.uk/)
+
 # Free AI Humanizer
 
 ## Quick Summary
