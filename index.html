@@ -597,25 +597,102 @@
         ⚡ Instant · No login · 100% private · Free forever
     </div>
 
-    <footer style="text-align: center; padding: 1.5rem; margin-top: 1rem; border-top: 1px solid #e5e7eb;">
-        <a href="https://turbo0.com/item/ai-humanizer-tool" target="_blank" rel="noopener noreferrer" style="display: inline-block; margin: 0 10px;">
-            <img src="https://img.turbo0.com/badge-listed-light.svg" alt="Listed on Turbo0" style="height: 40px; width: auto;">
-        </a>
-        <a href="https://thesaasdir.com/product/free-ai-humanizer?ref=badge" target="_blank" rel="dofollow" style="display: inline-block; margin: 0 10px;">
-            <img src="https://thesaasdir.com/badge/free-ai-humanizer.svg" alt="Featured on TheSaaSDir" style="height: 40px; width: auto;">
-        </a>
-        <a href="https://aitoolslister.com/tools/ai-humanizer" target="_blank" rel="noopener" style="display: inline-block; margin: 0 10px;">
-            <img src="https://aitoolslister.com/badges/listed-card-dark.svg" alt="Listed on AI Tools Lister" style="height: 40px; width: auto;">
-        </a>
-        <a href="https://www.ai-visibility.org.uk/directory/verify/freeaihumanizer-online/" target="_blank" rel="noopener">
-  <img src="https://www.ai-visibility.org.uk/specifications/badges/essential.svg"
-       alt="Free AI Humanizer: AI Discovery Files Essential conformance, Directory-verified"
-       width="120" height="140" loading="lazy">
-</a>
-        <a href="https://startupdirectory.net"><img src="https://startupdirectory.net/badge/featured-light.svg" alt="Featured" /></a>
-<a href="https://startupdirectory.net"><img src="https://startupdirectory.net/badge/featured-dark.svg" alt="Featured" /></a>
+   <footer style="text-align: center; padding: 1.5rem; margin-top: 1rem; border-top: 1px solid #e5e7eb; overflow: hidden;">
+    
+    <h3 style="font-size: 1.2rem; color: #4b5563; margin-bottom: 1.5rem; font-family: sans-serif; font-weight: 600;">Featured On</h3>
 
-    </footer>
+    <style>
+        /* Main wrapper jo extra badges ko screen se baahir hide rakhta hai */
+        .marquee-wrapper {
+            overflow: hidden;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        /* Container jo left side pe continuous move karega */
+        .marquee-content {
+            display: flex;
+            width: max-content;
+            align-items: center;
+            animation: scrollMarquee 25s linear infinite; /* Speed yahan se adjust hoti hai (e.g. 20s or 30s) */
+        }
+
+        /* Mouse le jaane par animation ruk jayegi taake click ho sake */
+        .marquee-content:hover {
+            animation-play-state: paused;
+        }
+
+        /* Har single badge ke darmiyan gap aur styling */
+        .marquee-item {
+            display: inline-block;
+            margin: 0 25px; /* Badges ke darmiyan ka space */
+            flex-shrink: 0;
+        }
+
+        /* Badges ka size fix karne ke liye */
+        .marquee-item img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Infinite animation logic */
+        @keyframes scrollMarquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%); /* Adha portion move hote hi smooth reset */
+            }
+        }
+    </style>
+
+    <div class="marquee-wrapper">
+        <div class="marquee-content">
+            
+            <a href="https://turbo0.com/item/ai-humanizer-tool" target="_blank" rel="noopener noreferrer" class="marquee-item">
+                <img src="https://img.turbo0.com/badge-listed-light.svg" alt="Listed on Turbo0">
+            </a>
+            <a href="https://thesaasdir.com/product/free-ai-humanizer?ref=badge" target="_blank" rel="dofollow" class="marquee-item">
+                <img src="https://thesaasdir.com/badge/free-ai-humanizer.svg" alt="Featured on TheSaaSDir">
+            </a>
+            <a href="https://aitoolslister.com/tools/ai-humanizer" target="_blank" rel="noopener" class="marquee-item">
+                <img src="https://aitoolslister.com/badges/listed-card-dark.svg" alt="Listed on AI Tools Lister">
+            </a>
+            <a href="https://www.ai-visibility.org.uk/directory/verify/freeaihumanizer-online/" target="_blank" rel="noopener" class="marquee-item">
+                <img src="https://www.ai-visibility.org.uk/specifications/badges/essential.svg" alt="Free AI Humanizer">
+            </a>
+            <a href="https://startupdirectory.net" target="_blank" rel="noopener" class="marquee-item">
+                <img src="https://startupdirectory.net/badge/featured-light.svg" alt="Featured">
+            </a>
+            <a href="https://startupdirectory.net" target="_blank" rel="noopener" class="marquee-item">
+                <img src="https://startupdirectory.net/badge/featured-dark.svg" alt="Featured">
+            </a>
+
+            <a href="https://turbo0.com/item/ai-humanizer-tool" target="_blank" rel="noopener noreferrer" class="marquee-item">
+                <img src="https://img.turbo0.com/badge-listed-light.svg" alt="Listed on Turbo0">
+            </a>
+            <a href="https://thesaasdir.com/product/free-ai-humanizer?ref=badge" target="_blank" rel="dofollow" class="marquee-item">
+                <img src="https://thesaasdir.com/badge/free-ai-humanizer.svg" alt="Featured on TheSaaSDir">
+            </a>
+            <a href="https://aitoolslister.com/tools/ai-humanizer" target="_blank" rel="noopener" class="marquee-item">
+                <img src="https://aitoolslister.com/badges/listed-card-dark.svg" alt="Listed on AI Tools Lister">
+            </a>
+            <a href="https://www.ai-visibility.org.uk/directory/verify/freeaihumanizer-online/" target="_blank" rel="noopener" class="marquee-item">
+                <img src="https://www.ai-visibility.org.uk/specifications/badges/essential.svg" alt="Free AI Humanizer">
+            </a>
+            <a href="https://startupdirectory.net" target="_blank" rel="noopener" class="marquee-item">
+                <img src="https://startupdirectory.net/badge/featured-light.svg" alt="Featured">
+            </a>
+            <a href="https://startupdirectory.net" target="_blank" rel="noopener" class="marquee-item">
+                <img src="https://startupdirectory.net/badge/featured-dark.svg" alt="Featured">
+            </a>
+
+        </div>
+    </div>
+</footer>
 </div>
 
 <script>
