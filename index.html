@@ -27,7 +27,7 @@
         src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
 </script>
   
-<!-- SCHEMA MARKUP (NEW) -->
+<!-- SCHEMA MARKUP -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -994,7 +994,6 @@
     transform: none;
   }
 
-  /* NEW: Content section styling */
   .content-section {
     padding: 60px 2rem;
     max-width: 900px;
@@ -1063,7 +1062,6 @@
   </div>
 </section>
 
-<!-- ===== NEW: 500+ WORDS UNIQUE CONTENT SECTION ===== -->
 <section class="content-section fade-up">
   <h2>What Makes <span>Free AI Humanizer</span> Different?</h2>
   <div class="content-grid">
@@ -1084,7 +1082,6 @@
     </p>
   </div>
 </section>
-<!-- ===== END NEW CONTENT ===== -->
 
 <section class="demo-section fade-up" id="demo">
   <p class="section-label">Live demo</p>
@@ -1113,7 +1110,7 @@
       <button class="mode-btn" onclick="setMode(this,'Academic')">Academic</button>
       <button class="humanize-btn" onclick="humanizeText()">✦ Humanize</button>
     </div>
-    
+
     <div class="meter-section" id="meterSection" style="display: none;">
       <div class="detection-card">
         <div class="detection-title">🧠 AI DETECTION ANALYSIS</div>
@@ -1133,7 +1130,7 @@
   </div>
 </section>
 
-<!-- ===== ADSENSE AD PLACEMENT (Added Here) ===== -->
+<!-- ===== ADSENSE AD PLACEMENT ===== -->
 <div style="max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem;">
   <div style="background: var(--bg3); border-radius: var(--radius-lg); padding: 1rem; border: 1px solid var(--border); text-align: center; min-height: 90px;">
     <ins class="adsbygoogle"
@@ -1303,8 +1300,11 @@
   }
   window._mode = 'Standard';
 
-  // 🔐 Gemini API Key (Environment Variable se aayegi)
-  const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+  // ⚠️ WARNING: This key is visible to anyone who opens DevTools on your live site.
+  // Rotate this key on openrouter.ai dashboard periodically, and consider moving this
+  // call to a backend/serverless proxy later so the key never reaches the browser.
+  const OPENROUTER_API_KEY = "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";
+  const OPENROUTER_MODEL = "meta-llama/llama-3.3-70b-instruct:free"; // free OpenRouter model
 
   const modePrompts = {
     Standard: "You are an expert text humanizer. Rewrite the following AI-generated text to sound completely natural and human-written. Rules: Keep meaning, use varied sentence lengths, use contractions (don't, can't, it's), replace formal words with casual ones, NEVER use 'moreover, furthermore, consequently', return ONLY rewritten text.",
@@ -1339,22 +1339,12 @@
     const meterFill = document.getElementById('aiMeterFill');
     const meterValue = document.getElementById('aiMeterValue');
     const badgeSpan = document.getElementById('classificationBadge');
+
     meterSection.style.display = 'block';
     meterFill.style.width = aiScore + '%';
     meterValue.innerHTML = Math.round(aiScore) + '%';
-    const meterFill = document.getElementById('aiMeterFill');
-    const meterValue = document.getElementById('aiMeterValue');
-    const badgeSpan = document.getElementById('classificationBadge');
-    meterSection.style.display = 'block';
-    meterFill.style.width = aiScore + '%';
-    meterValue.innerHTML = Math.round(aiScore) + '%';
+
     if (aiScore > 60) {
-      badgeSpan.innerHTML = '⚠️ AI Generated';
-      badgeSpan.className = 'classification-badge badge-ai';
-      meterFill.classList.add('ai');
-    } else {
-      badgeSpan.innerHTML = '✅ Likely Human';
-      badgeSpan.className = 'classification-badge badge if (aiScore > 60) {
       badgeSpan.innerHTML = '⚠️ AI Generated';
       badgeSpan.className = 'classification-badge badge-ai';
       meterFill.classList.add('ai');
@@ -1369,153 +1359,49 @@
     const btn = document.querySelector('.humanize-btn');
     const out = document.getElementById('output-text');
     const inputText = document.getElementById('input-text').innerText.trim();
-    if (!inputText || inputText.length < 10) {
-      out.innerHTML = '<span style="color:var(--red)">Please enter some text first.</span>';
-      return;
-    }
-    btn.innerHTML = '⟳ Human-human';
-      meterFill.classList.remove('ai');
-    }
-  }
 
-  async function humanizeText() {
-    const btn = document.querySelector('.humanize-btn');
-    const out = document.getElementById('output-text');
-    const inputText = document.getElementById('input-text').innerText.trim();
     if (!inputText || inputText.length < 10) {
       out.innerHTML = '<span style="color:var(--red)">Please enter some text first.</span>';
       return;
     }
+
     btn.innerHTML = '⟳ Humanizing...';
     btn.disabled = true;
-    out.innerHTML = '<span style="color:var(--text3)">Processing with Gemini...</span>';
+    out.innerHTML = '<span style="color:var(--text3)">Processing...</span>';
+
     try {
       const systemPrompt = modePrompts[window._mode] || modePrompts.Standard;
-      const fullPrompt = systemPrompt + "\n\nText to humanize:\n" + inputText;
-      
-      constizing...';
-    btn.disabled = true;
-    out.innerHTML = '<span style="color:var(--text3)">Processing with Gemini...</span>';
-    try {
-      const systemPrompt = modePrompts[window._mode] || modePrompts.Standard;
-      const fullPrompt = systemPrompt + "\n\nText to humanize:\n" + inputText;
-      
-      const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent', {
+
+      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-goog-api-key': GEMINI_API_KEY
+          'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
+          'HTTP-Referer': 'https://freeaihumanizer.online',
+          'X-Title': 'Free AI Humanizer'
         },
         body: JSON.stringify({
-          contents: [
-            {
-              parts: [
-                {
-                  text: fullPrompt
-                }
-              ]
-            }
+          model: OPENROUTER_MODEL,
+          messages: [
+            { role: 'system', content: systemPrompt },
+            { role: 'user', content: inputText }
           ]
         })
       });
 
       if (!response.ok) {
-        const err = await response.json();
+        const err = await response.json().catch(() => ({}));
         throw new Error(err.error?.message || 'API error');
       }
 
       const data = await response.json();
-      const result = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
+      const result = (data.choices?.[0]?.message?.content || '').trim();
 
       if (result) {
         out.innerHTML = result;
         updateMeter(result);
       } else {
-        throw new Error('Empty response from Gemini');
-      }
-    response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-goog-api-key': GEMINI_API_KEY
-        },
-        body: JSON.stringify({
-          contents: [
-            {
-              parts: [
-                {
-                  text: fullPrompt
-                }
-              ]
-            }
-          ]
-        })
-      });
-
-      if (!response.ok) {
-        const err = await response.json();
-        throw new Error(err.error?.message || 'API error');
-      }
-
-      const data = await response.json();
-      const result = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
-
-      if (result) {
-        out.innerHTML = result;
-        updateMeter(result);
-      } else {
-        throw new Error('Empty response from Gemini } catch (err) {
-      console.error(err);
-      out.innerHTML = `<span style="color:var(--red)">⚠️ Error: ${err.message}</span>`;
-    } finally {
-      btn.innerHTML = '✦ Humanize';
-      btn.disabled = false;
-    }
-  }
-
-  const FORMSPREE_URL = "https://formspree.io/f/xnjydgzd";
-  async function submitFeedback() {
-    const name = document.getElementById('fbName').value.trim();
-    const email = document.getElementById('fbEmail').value.trim();
-    const message = document.getElementById('fbMessage').value.trim();
-    const successDiv = document.getElementById('fbSuccess');
-    const errorDiv = document.getElementById('fbError');
-    if (!message) {
-      errorDiv.style.display = 'block';
-      errorDiv.textContent = '❌ Please write your feedback.';
-      setTimeout(() => errorDiv.style.display = 'none', 3000);
-      return;
-    }
-    successDiv.style.display = 'none';
-    errorDiv.style.display = 'none';
-    try {
-      const formData = new FormData();
-      formData.append('name', name || 'Anonymous');
-      formData.append('email', email || 'no-reply@user.com');
-      formData.append('message', message);
-      formData.append('_subject', 'Feedback from AI Humanizer');
-      const response = await fetch(FORMSPREE_URL, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
-      if (response.ok) {
-        successDiv.style.display = 'block';
-        document.getElementById('fbName').value = '';
-        document.getElementById('fbEmail').value = '';
-        document.getElementById('fbMessage').value = '';
-        setTimeout(() => successDiv.style.display = 'none', 5000);
-      } else { throw new Error('Formspree error'); }
-    } catch (err) {
-      errorDiv.style.display = 'block';
-      setTimeout(() => errorDiv.style.display = 'none', 4000);
-    }
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-</script>
-
- <script>
-  window.va = window.va || function () { (window.vaq = window.vaq || []).');
+        throw new Error('Empty response from OpenRouter');
       }
     } catch (err) {
       console.error(err);
@@ -1533,28 +1419,39 @@
     const message = document.getElementById('fbMessage').value.trim();
     const successDiv = document.getElementById('fbSuccess');
     const errorDiv = document.getElementById('fbError');
+
     if (!message) {
       errorDiv.style.display = 'block';
       errorDiv.textContent = '❌ Please write your feedback.';
       setTimeout(() => errorDiv.style.display = 'none', 3000);
       return;
     }
+
     successDiv.style.display = 'none';
     errorDiv.style.display = 'none';
+
     try {
       const formData = new FormData();
       formData.append('name', name || 'Anonymous');
       formData.append('email', email || 'no-reply@user.com');
       formData.append('message', message);
       formData.append('_subject', 'Feedback from AI Humanizer');
-      const response = await fetch(FORMSPREE_URL, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
+
+      const response = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
       if (response.ok) {
         successDiv.style.display = 'block';
         document.getElementById('fbName').value = '';
         document.getElementById('fbEmail').value = '';
         document.getElementById('fbMessage').value = '';
         setTimeout(() => successDiv.style.display = 'none', 5000);
-      } else { throw new Error('Formspree error'); }
+      } else {
+        throw new Error('Formspree error');
+      }
     } catch (err) {
       errorDiv.style.display = 'block';
       setTimeout(() => errorDiv.style.display = 'none', 4000);
@@ -1567,7 +1464,7 @@
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 
- <script>
+<script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
