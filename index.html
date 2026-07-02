@@ -23,10 +23,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Free AI Humanizer - Make AI Text Sound Human" />
 <meta name="twitter:description" content="Free AI humanizer tool. Bypass Turnitin and GPTZero. No login. 100% free." />
-<script async custom-element="amp-auto-ads"
-        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
-</script>
-  
+
 <!-- SCHEMA MARKUP -->
 <script type="application/ld+json">
 {
@@ -1065,21 +1062,11 @@
 <section class="content-section fade-up">
   <h2>What Makes <span>Free AI Humanizer</span> Different?</h2>
   <div class="content-grid">
-    <p>
-      <strong>Free AI Humanizer</strong> is a completely free tool designed to transform AI-generated text — whether from ChatGPT, Gemini, Claude, or any other AI model — into natural, human-sounding content that bypasses even the most advanced AI detectors like Turnitin, GPTZero, and Originality.ai.
-    </p>
-    <p>
-      Unlike other AI humanizers that charge high fees or compromise your privacy, our tool processes your text in memory only — <strong>we never store or share your data</strong>. Within seconds, you get fluid, readable text that retains all your original meaning, facts, and arguments while sounding like a real person wrote it.
-    </p>
-    <p>
-      With <strong>three distinct modes</strong> — Standard for everyday content, Aggressive for maximum humanization, and Academic for scholarly writing — Free AI Humanizer adapts to your specific needs. Whether you're a student avoiding Turnitin flags, a content creator looking to bypass GPTZero, or a professional needing natural-sounding text, our tool delivers <strong>99.2% detection bypass rate</strong> consistently.
-    </p>
-    <p>
-      Best of all? <strong>No sign-up required</strong>. No credit card. No hidden limits on the free plan (500 words/day). Just paste your AI text, click Humanize, and get human-quality writing instantly. That's why <strong>500,000+ users</strong> trust Free AI Humanizer to make their work undetectable and authentic.
-    </p>
-    <p>
-      Our technology goes beyond simple synonym swapping. We restructure sentences, vary sentence lengths, replace formal patterns with natural conversational flow, and apply human-like imperfections that AI detectors can't flag. The result? Text that doesn't just <em>look</em> human — it <em>reads</em> human.
-    </p>
+    <p><strong>Free AI Humanizer</strong> is a completely free tool designed to transform AI-generated text — whether from ChatGPT, Gemini, Claude, or any other AI model — into natural, human-sounding content that bypasses even the most advanced AI detectors like Turnitin, GPTZero, and Originality.ai.</p>
+    <p>Unlike other AI humanizers that charge high fees or compromise your privacy, our tool processes your text in memory only — <strong>we never store or share your data</strong>. Within seconds, you get fluid, readable text that retains all your original meaning, facts, and arguments while sounding like a real person wrote it.</p>
+    <p>With <strong>three distinct modes</strong> — Standard for everyday content, Aggressive for maximum humanization, and Academic for scholarly writing — Free AI Humanizer adapts to your specific needs. Whether you're a student avoiding Turnitin flags, a content creator looking to bypass GPTZero, or a professional needing natural-sounding text, our tool delivers <strong>99.2% detection bypass rate</strong> consistently.</p>
+    <p>Best of all? <strong>No sign-up required</strong>. No credit card. No hidden limits on the free plan (500 words/day). Just paste your AI text, click Humanize, and get human-quality writing instantly. That's why <strong>500,000+ users</strong> trust Free AI Humanizer to make their work undetectable and authentic.</p>
+    <p>Our technology goes beyond simple synonym swapping. We restructure sentences, vary sentence lengths, replace formal patterns with natural conversational flow, and apply human-like imperfections that AI detectors can't flag. The result? Text that doesn't just <em>look</em> human — it <em>reads</em> human.</p>
   </div>
 </section>
 
@@ -1110,7 +1097,7 @@
       <button class="mode-btn" onclick="setMode(this,'Academic')">Academic</button>
       <button class="humanize-btn" onclick="humanizeText()">✦ Humanize</button>
     </div>
-
+    
     <div class="meter-section" id="meterSection" style="display: none;">
       <div class="detection-card">
         <div class="detection-title">🧠 AI DETECTION ANALYSIS</div>
@@ -1130,7 +1117,7 @@
   </div>
 </section>
 
-<!-- ===== ADSENSE AD PLACEMENT ===== -->
+<!-- ADSENSE AD -->
 <div style="max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem;">
   <div style="background: var(--bg3); border-radius: var(--radius-lg); padding: 1rem; border: 1px solid var(--border); text-align: center; min-height: 90px;">
     <ins class="adsbygoogle"
@@ -1144,7 +1131,6 @@
     </script>
   </div>
 </div>
-<!-- ===== END ADSENSE AD ===== -->
 
 <section class="how-section fade-up" id="how">
   <p class="section-label">Process</p>
@@ -1244,9 +1230,6 @@
     <a href="#demo" class="btn-primary" style="font-size:1rem; padding:15px 32px;">✦ Try it free</a>
   </div>
 </section>
-  <amp-auto-ads type="adsense"
-        data-ad-client="ca-pub-1521969559455326">
-</amp-auto-ads>
 
 <div class="marquee-section">
   <div class="marquee">
@@ -1300,11 +1283,8 @@
   }
   window._mode = 'Standard';
 
-  // ⚠️ WARNING: This key is visible to anyone who opens DevTools on your live site.
-  // Rotate this key on openrouter.ai dashboard periodically, and consider moving this
-  // call to a backend/serverless proxy later so the key never reaches the browser.
-  const OPENROUTER_API_KEY = "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";
-  const OPENROUTER_MODEL = "meta-llama/llama-3.3-70b-instruct:free"; // free OpenRouter model
+  // ✅ NEW GROQ API KEY
+  const GROQ_API_KEY = "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";
 
   const modePrompts = {
     Standard: "You are an expert text humanizer. Rewrite the following AI-generated text to sound completely natural and human-written. Rules: Keep meaning, use varied sentence lengths, use contractions (don't, can't, it's), replace formal words with casual ones, NEVER use 'moreover, furthermore, consequently', return ONLY rewritten text.",
@@ -1339,11 +1319,9 @@
     const meterFill = document.getElementById('aiMeterFill');
     const meterValue = document.getElementById('aiMeterValue');
     const badgeSpan = document.getElementById('classificationBadge');
-
     meterSection.style.display = 'block';
     meterFill.style.width = aiScore + '%';
     meterValue.innerHTML = Math.round(aiScore) + '%';
-
     if (aiScore > 60) {
       badgeSpan.innerHTML = '⚠️ AI Generated';
       badgeSpan.className = 'classification-badge badge-ai';
@@ -1359,50 +1337,27 @@
     const btn = document.querySelector('.humanize-btn');
     const out = document.getElementById('output-text');
     const inputText = document.getElementById('input-text').innerText.trim();
-
     if (!inputText || inputText.length < 10) {
       out.innerHTML = '<span style="color:var(--red)">Please enter some text first.</span>';
       return;
     }
-
     btn.innerHTML = '⟳ Humanizing...';
     btn.disabled = true;
-    out.innerHTML = '<span style="color:var(--text3)">Processing...</span>';
-
+    out.innerHTML = '<span style="color:var(--text3)">Processing with Groq...</span>';
     try {
       const systemPrompt = modePrompts[window._mode] || modePrompts.Standard;
-
-      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
-          'HTTP-Referer': 'https://freeaihumanizer.online',
-          'X-Title': 'Free AI Humanizer'
-        },
-        body: JSON.stringify({
-          model: OPENROUTER_MODEL,
-          messages: [
-            { role: 'system', content: systemPrompt },
-            { role: 'user', content: inputText }
-          ]
-        })
+        headers: { 'Authorization': `Bearer ${GROQ_API_KEY}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: 'llama-3.3-70b-versatile', messages: [{ role: 'system', content: systemPrompt }, { role: 'user', content: inputText }], temperature: 0.75, max_tokens: 1500 })
       });
-
-      if (!response.ok) {
-        const err = await response.json().catch(() => ({}));
-        throw new Error(err.error?.message || 'API error');
-      }
-
+      if (!response.ok) { const err = await response.json(); throw new Error(err.error?.message || 'API error'); }
       const data = await response.json();
-      const result = (data.choices?.[0]?.message?.content || '').trim();
-
+      const result = data.choices[0]?.message?.content;
       if (result) {
         out.innerHTML = result;
         updateMeter(result);
-      } else {
-        throw new Error('Empty response from OpenRouter');
-      }
+      } else { throw new Error('Empty response'); }
     } catch (err) {
       console.error(err);
       out.innerHTML = `<span style="color:var(--red)">⚠️ Error: ${err.message}</span>`;
@@ -1419,39 +1374,28 @@
     const message = document.getElementById('fbMessage').value.trim();
     const successDiv = document.getElementById('fbSuccess');
     const errorDiv = document.getElementById('fbError');
-
     if (!message) {
       errorDiv.style.display = 'block';
       errorDiv.textContent = '❌ Please write your feedback.';
       setTimeout(() => errorDiv.style.display = 'none', 3000);
       return;
     }
-
     successDiv.style.display = 'none';
     errorDiv.style.display = 'none';
-
     try {
       const formData = new FormData();
       formData.append('name', name || 'Anonymous');
       formData.append('email', email || 'no-reply@user.com');
       formData.append('message', message);
       formData.append('_subject', 'Feedback from AI Humanizer');
-
-      const response = await fetch(FORMSPREE_URL, {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
-
+      const response = await fetch(FORMSPREE_URL, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
       if (response.ok) {
         successDiv.style.display = 'block';
         document.getElementById('fbName').value = '';
         document.getElementById('fbEmail').value = '';
         document.getElementById('fbMessage').value = '';
         setTimeout(() => successDiv.style.display = 'none', 5000);
-      } else {
-        throw new Error('Formspree error');
-      }
+      } else { throw new Error('Formspree error'); }
     } catch (err) {
       errorDiv.style.display = 'block';
       setTimeout(() => errorDiv.style.display = 'none', 4000);
