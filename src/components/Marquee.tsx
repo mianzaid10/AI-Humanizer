@@ -13,6 +13,7 @@ const badges = [
   { href: 'https://tulimoa.com/discover/free-ai-humanizer', src: 'https://tulimoa.com/badge/dark.svg', alt: 'Tulimoa' },
   { href: 'https://indexof.ai/tool/free-ai-humanizer?ref=free-ai-humanizer', src: 'https://indexof.ai/badge-dark.svg', alt: 'IndexOf.AI' },
   { href: 'https://dang.ai', src: 'https://assets.dang.ai/badges/dang-verified-dark.png', alt: 'Verified on DANG!' },
+  { href: 'https://toolfame.com/item/free-ai-humanizer', src: 'https://toolfame.com/badge-dark.svg', alt: 'toolfame' },
 ];
 
 export default function Marquee() {
