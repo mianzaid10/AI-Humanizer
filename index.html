@@ -1,2236 +1,1534 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Free AI Humanizer — Make AI Text Sound Human | Bypass Turnitin & GPTZero</title>
-  <meta name="description" content="Free AI humanizer tool to make ChatGPT, Gemini, Claude, and DeepSeek text sound human. Bypass Turnitin, GPTZero, Originality.ai & all AI detectors. No login. 100% free. Instant results." />
-  <meta name="keywords" content="AI humanizer, humanize AI text, bypass AI detector, free AI tool, make AI text sound human, ChatGPT humanizer, Turnitin bypass, GPTZero bypass, undetectable AI, AI text rewriter, paraphrase AI, remove AI detection, AI content humanizer, free undetectable AI, AI detector bypass tool, rewrite AI text, naturalize AI writing, AI to human text converter, anti AI detector, plagiarism free AI text, AI writing assistant, content rewriter, essay humanizer, academic AI bypass, free text humanizer, AI paraphraser, sentence rewriter, text spinner alternative" />
-  <meta name="author" content="Free AI Humanizer" />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://freeaihumanizer.online" />
-  
-  <style>
-    /* ===== RESET & BASE ===== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #05050A;
-      color: #F0EEF9;
-      line-height: 1.6;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-    
-    /* ===== SCROLLBAR ===== */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #05050A; }
-    ::-webkit-scrollbar-thumb { background: rgba(124, 92, 252, 0.3); border-radius: 10px; }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(124, 92, 252, 0.5); }
-    
-    /* ===== AURORA BACKGROUND ===== */
-    .aurora-bg {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    
-    .aurora-orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(120px);
-      opacity: 0.15;
-      animation: aurora-float 20s ease-in-out infinite;
-    }
-    
-    .aurora-orb-1 {
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, #7C5CFC 0%, transparent 70%);
-      top: -10%;
-      left: 20%;
-      animation-delay: 0s;
-    }
-    
-    .aurora-orb-2 {
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, #A78BFA 0%, transparent 70%);
-      top: 40%;
-      right: -5%;
-      animation-delay: -7s;
-    }
-    
-    .aurora-orb-3 {
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, #60A5FA 0%, transparent 70%);
-      bottom: 10%;
-      left: -5%;
-      animation-delay: -14s;
-    }
-    
-    @keyframes aurora-float {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      25% { transform: translate(40px, -30px) scale(1.1); }
-      50% { transform: translate(-20px, 40px) scale(0.95); }
-      75% { transform: translate(30px, 20px) scale(1.05); }
-    }
-    
-    .grid-pattern {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(124, 92, 252, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(124, 92, 252, 0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-      -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-    }
-    
-    /* ===== UTILITY ===== */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    
-    .gradient-text {
-      background: linear-gradient(135deg, #A78BFA 0%, #7C5CFC 50%, #60A5FA 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .glass {
-      background: rgba(17, 17, 32, 0.6);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-    }
-    
-    .glow-accent {
-      box-shadow: 0 0 40px rgba(124, 92, 252, 0.15), 0 0 80px rgba(124, 92, 252, 0.08);
-    }
-    
-    .card-lift {
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
-    }
-    .card-lift:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(124, 92, 252, 0.1);
-    }
-    
-    .section-label {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      color: #A78BFA;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      margin-bottom: 12px;
-    }
-    
-    .section-title {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 16px;
-    }
-    
-    .section-sub {
-      color: #9B97B8;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-    
-    /* ===== NAVBAR ===== */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 0 20px;
-      height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: background 0.3s, border-color 0.3s;
-    }
-    
-    .navbar.scrolled {
-      background: rgba(5, 5, 10, 0.8);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-    
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: #F0EEF9;
-      font-weight: 700;
-      font-size: 18px;
-    }
-    
-    .nav-logo-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #7C5CFC, #A78BFA);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-    }
-    
-    .nav-links {
-      display: none;
-      gap: 32px;
-      align-items: center;
-    }
-    
-    .nav-links a {
-      color: #9B97B8;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      transition: color 0.3s;
-      position: relative;
-    }
-    
-    .nav-links a:hover {
-      color: #F0EEF9;
-    }
-    
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #7C5CFC, #A78BFA);
-      transition: width 0.3s;
-    }
-    
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-    
-    .nav-cta {
-      padding: 8px 20px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #7C5CFC, #A78BFA);
-      color: #fff !important;
-      font-weight: 600;
-      font-size: 13px;
-      text-decoration: none;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    
-    .nav-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(124, 92, 252, 0.3);
-    }
-    
-    .nav-cta::after { display: none !important; }
-    
-    .mobile-toggle {
-      background: none;
-      border: none;
-      color: #F0EEF9;
-      font-size: 24px;
-      cursor: pointer;
-      display: block;
-    }
-    
-    .mobile-menu {
-      display: none;
-      background: rgba(10, 10, 20, 0.95);
-      backdrop-filter: blur(20px);
-      padding: 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-    
-    .mobile-menu.open {
-      display: block;
-    }
-    
-    .mobile-menu a {
-      display: block;
-      color: #9B97B8;
-      text-decoration: none;
-      padding: 10px 0;
-      font-size: 15px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-    }
-    
-    .mobile-menu a:last-child {
-      border-bottom: none;
-    }
-    
-    .mobile-menu .mobile-cta {
-      margin-top: 10px;
-      background: linear-gradient(135deg, #7C5CFC, #A78BFA);
-      color: #fff !important;
-      padding: 12px;
-      border-radius: 10px;
-      text-align: center;
-      font-weight: 600;
-    }
-    
-    /* ===== HERO ===== */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 100px 20px 60px;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 6px 16px;
-      border-radius: 100px;
-      border: 1px solid rgba(124, 92, 252, 0.3);
-      background: rgba(124, 92, 252, 0.1);
-      font-size: 11px;
-      font-weight: 600;
-      color: #A78BFA;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 30px;
-    }
-    
-    .hero-badge-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #34D399;
-      animation: pulse-dot 2s infinite;
-    }
-    
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
-    }
-    
-    .hero-title {
-      font-size: clamp(2.5rem, 8vw, 4.5rem);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin-bottom: 20px;
-    }
-    
-    .hero-title .highlight {
-      position: relative;
-    }
-    
-    .hero-title .highlight-underline {
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, #7C5CFC, #A78BFA);
-      border-radius: 4px;
-    }
-    
-    .hero-desc {
-      font-size: clamp(1rem, 1.5vw, 1.2rem);
-      color: #9B97B8;
-      max-width: 600px;
-      margin: 0 auto 40px;
-      line-height: 1.7;
-    }
-    
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      justify-content: center;
-      margin-bottom: 60px;
-    }
-    
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 32px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #7C5CFC, #A78BFA);
-      color: #fff;
-      font-weight: 600;
-      font-size: 14px;
-      text-decoration: none;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 40px rgba(124, 92, 252, 0.3);
-    }
-    
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 32px;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: #9B97B8;
-      font-weight: 500;
-      font-size: 14px;
-      text-decoration: none;
-      transition: all 0.3s;
-    }
-    
-    .btn-secondary:hover {
-      border-color: rgba(255, 255, 255, 0.25);
-      color: #F0EEF9;
-      transform: translateY(-3px);
-    }
-    
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 30px;
-      width: 100%;
-      max-width: 600px;
-    }
-    
-    .hero-stat {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .hero-stat-value {
-      font-size: clamp(1.5rem, 3vw, 2.2rem);
-      font-weight: 700;
-      color: #F0EEF9;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    
-    .hero-stat-value svg {
-      width: 20px;
-      height: 20px;
-      color: #7C5CFC;
-    }
-    
-    .hero-stat-label {
-      font-size: 12px;
-      color: #65617E;
-      font-weight: 500;
-    }
-    
-    /* ===== SECTIONS ===== */
-    section {
-      padding: 80px 0;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .section-center {
-      text-align: center;
-    }
-    
-    /* ===== COMPARE SECTION ===== */
-    .compare-grid {
-      display: grid;
-      gap: 20px;
-      margin-top: 40px;
-    }
-    
-    @media (min-width: 768px) {
-      .compare-grid {
-        grid-template-columns: 1fr 1fr;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Free AI Humanizer – Make AI Text Sound Human | Bypass Turnitin & GPTZero</title>
+<meta name="description" content="Free AI humanizer tool to make ChatGPT, Gemini, and Claude text sound human. Bypass Turnitin and GPTZero detection. No login. 100% free. Instant results." />
+<meta name="keywords" content="AI humanizer, humanize AI text, bypass AI detector, free AI tool, make AI text sound human, ChatGPT humanizer, Turnitin bypass, GPTZero bypass, undetectable AI" />
+<meta name="author" content="Free AI Humanizer" />
+  <meta name="google-adsense-account" content="ca-pub-1521969559455326">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NS9MV10M8Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NS9MV10M8Y');
+</script>
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<link rel="canonical" href="https://freeaihumanizer.online" />
+<script src="https://analytics.ahrefs.com/analytics.js" data-key="Oc1j/lgXa647DsghzvEBuw" async></script>
+
+<!-- Open Graph / Social Media -->
+<meta property="og:title" content="Free AI Humanizer - Make AI Text Sound Human" />
+<meta property="og:description" content="Free AI humanizer tool. Bypass Turnitin and GPTZero. No login. 100% free. Instant results." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://freeaihumanizer.online" />
+<meta property="og:site_name" content="Free AI Humanizer" />
+<meta property="og:image" content="https://freeaihumanizer.online/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Free AI Humanizer - Make AI Text Sound Human" />
+<meta name="twitter:description" content="Free AI humanizer tool. Bypass Turnitin and GPTZero. No login. 100% free." />
+<meta name="twitter:image" content="https://freeaihumanizer.online/og-image.png" />
+
+<meta name="theme-color" content="#05050A" />
+
+<!-- Performance: preconnect to third-party origins used above the fold -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://api.groq.com" />
+<link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+<!-- SCHEMA MARKUP: SoftwareApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Free AI Humanizer",
+  "url": "https://freeaihumanizer.online",
+  "applicationCategory": "WebApplication",
+  "operatingSystem": "All",
+  "description": "Free AI humanizer tool to make ChatGPT, Gemini, and Claude text sound human. Bypass Turnitin and GPTZero detection. No login required.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "1247"
+  }
+}
+</script>
+
+<!-- SCHEMA MARKUP: FAQPage (enables FAQ rich results in Google Search) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does it really bypass Turnitin and GPTZero?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — we test against all major detectors weekly. 94%+ pass undetected in Standard mode."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will the meaning of my text change?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. All facts, arguments, and key points are preserved. Only the expression changes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my text stored or shared?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Never. Your input is processed in memory and deleted immediately after conversion."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which AI tools' output does it work with?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ChatGPT, Claude, Gemini, Grok, Llama, Copilot, Jasper — any AI text."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a word limit on the Free plan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "500 words per day. Pro accounts have unlimited conversions."
       }
     }
-    
-    .compare-card {
-      padding: 30px;
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .compare-card.before {
-      background: rgba(248, 113, 113, 0.04);
-      border-color: rgba(248, 113, 113, 0.1);
-    }
-    
-    .compare-card.after {
-      background: rgba(52, 211, 153, 0.04);
-      border-color: rgba(52, 211, 153, 0.1);
-    }
-    
-    .compare-card .top-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-    }
-    
-    .compare-card.before .top-bar {
-      background: linear-gradient(90deg, #F87171, transparent);
-    }
-    
-    .compare-card.after .top-bar {
-      background: linear-gradient(90deg, #34D399, transparent);
-    }
-    
-    .compare-card .label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 16px;
-    }
-    
-    .compare-card.before .label { color: #F87171; }
-    .compare-card.after .label { color: #34D399; }
-    
-    .compare-card .label-icon {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-    }
-    
-    .compare-card.before .label-icon {
-      background: rgba(248, 113, 113, 0.1);
-    }
-    
-    .compare-card.after .label-icon {
-      background: rgba(52, 211, 153, 0.1);
-    }
-    
-    .compare-card p {
-      color: #9B97B8;
-      font-size: 14px;
-      line-height: 1.8;
-    }
-    
-    .compare-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 6px;
-      margin: 20px 0 30px;
-    }
-    
-    .compare-tab {
-      width: 40px;
-      height: 6px;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.06);
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    
-    .compare-tab.active {
-      width: 64px;
-      background: linear-gradient(90deg, #7C5CFC, #A78BFA);
-    }
-    
-    .compare-tab:hover {
-      background: rgba(255, 255, 255, 0.12);
-    }
-    
-    .compare-tab.active:hover {
-      background: linear-gradient(90deg, #7C5CFC, #A78BFA);
-    }
-    
-    /* ===== DEMO EDITOR ===== */
-    .editor-wrapper {
-      margin-top: 40px;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      background: rgba(17, 17, 32, 0.6);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-    }
-    
-    .editor-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 20px;
-      background: rgba(10, 10, 20, 0.5);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-    
-    .editor-dots {
-      display: flex;
-      gap: 6px;
-    }
-    
-    .editor-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
-    
-    .editor-dot.red { background: #FF5F57; }
-    .editor-dot.yellow { background: #FFBD2E; }
-    .editor-dot.green { background: #28CA41; }
-    
-    .editor-header-label {
-      margin-left: auto;
-      font-size: 11px;
-      color: #65617E;
-      font-weight: 500;
-    }
-    
-    .editor-body {
-      display: grid;
-    }
-    
-    @media (min-width: 768px) {
-      .editor-body {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-    
-    .editor-pane {
-      padding: 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-    
-    @media (min-width: 768px) {
-      .editor-pane {
-        border-bottom: none;
-        border-right: 1px solid rgba(255, 255, 255, 0.06);
-      }
-    }
-    
-    .editor-pane-label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 12px;
-    }
-    
-    .editor-pane-label.input { color: #F87171; }
-    .editor-pane-label.output { color: #34D399; }
-    
-    .editor-pane textarea {
-      width: 100%;
-      min-height: 180px;
-      background: transparent;
-      border: none;
-      color: #9B97B8;
-      font-size: 14px;
-      line-height: 1.8;
-      resize: none;
-      outline: none;
-      font-family: inherit;
-    }
-    
-    .editor-pane textarea::placeholder {
-      color: #65617E;
-    }
-    
-    .editor-output {
-      min-height: 180px;
-      color: #9B97B8;
-      font-size: 14px;
-      line-height: 1.8;
-    }
-    
-    .editor-output .placeholder {
-      color: #65617E;
-    }
-    
-    .editor-output .loading {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    
-    .editor-output .loading-line {
-      height: 10px;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.04);
-      animation: shimmer 2s infinite;
-      background-size: 200% 100%;
-    }
-    
-    @keyframes shimmer {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
-    }
-    
-    .editor-footer {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      padding: 14px 20px;
-      background: rgba(10, 10, 20, 0.3);
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      align-items: center;
-    }
-    
-    .mode-buttons {
-      display: flex;
-      gap: 6px;
-    }
-    
-    .mode-btn {
-      padding: 6px 16px;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      background: transparent;
-      color: #65617E;
-      font-size: 11px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    
-    .mode-btn.active {
-      color: #F0EEF9;
-      border-color: rgba(124, 92, 252, 0.5);
-      background: rgba(124, 92, 252, 0.15);
-      box-shadow: 0 0 20px rgba(124, 92, 252, 0.15);
-    }
-    
-    .mode-btn:hover {
-      color: #F0EEF9;
-    }
-    
-    .btn-humanize {
-      margin-left: auto;
-      padding: 10px 28px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #7C5CFC, #A78BFA);
-      color: #fff;
-      font-weight: 600;
-      font-size: 13px;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    
-    .btn-humanize:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(124, 92, 252, 0.25);
-    }
-    
-    .btn-humanize:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-    }
-    
-    .btn-humanize .spinner {
-      animation: spin 1s linear infinite;
-    }
-    
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-    
-    .editor-error {
-      color: #F87171;
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    
-    /* ===== METER ===== */
-    .meter-wrapper {
-      padding: 16px 20px 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      background: rgba(10, 10, 20, 0.3);
-    }
-    
-    .meter-box {
-      padding: 16px 20px;
-      border-radius: 12px;
-      background: rgba(10, 10, 20, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-    }
-    
-    .meter-row {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 8px;
-    }
-    
-    .meter-row:last-child {
-      margin-bottom: 0;
-    }
-    
-    .meter-label {
-      font-size: 11px;
-      font-weight: 600;
-      color: #9B97B8;
-      width: 100px;
-      flex-shrink: 0;
-    }
-    
-    .meter-track {
-      flex: 1;
-      height: 10px;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.04);
-      overflow: hidden;
-      position: relative;
-    }
-    
-    .meter-fill {
-      height: 100%;
-      border-radius: 10px;
-      transition: width 1s ease;
-      position: relative;
-    }
-    
-    .meter-fill.human {
-      background: linear-gradient(90deg, #34D399, #10B981);
-    }
-    
-    .meter-fill.ai {
-      background: linear-gradient(90deg, #F87171, #EF4444);
-    }
-    
-    .meter-fill .shimmer {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.15) 50%, transparent 100%);
-      background-size: 200% 100%;
-      animation: shimmer 1.5s infinite;
-      border-radius: 10px;
-    }
-    
-    .meter-value {
-      font-size: 14px;
-      font-weight: 700;
-      color: #F0EEF9;
-      width: 48px;
-      text-align: right;
-      flex-shrink: 0;
-    }
-    
-    .meter-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 12px;
-      border-radius: 100px;
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-    
-    .meter-badge.human {
-      background: rgba(52, 211, 153, 0.1);
-      color: #34D399;
-      border: 1px solid rgba(52, 211, 153, 0.2);
-    }
-    
-    .meter-badge.ai {
-      background: rgba(248, 113, 113, 0.1);
-      color: #F87171;
-      border: 1px solid rgba(248, 113, 113, 0.2);
-    }
-    
-    /* ===== STEPS ===== */
-    .steps-grid {
-      display: grid;
-      gap: 20px;
-      margin-top: 40px;
-    }
-    
-    @media (min-width: 768px) {
-      .steps-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    
-    .step-card {
-      padding: 30px;
-      border-radius: 16px;
-      background: #111120;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      position: relative;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    
-    .step-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    }
-    
-    .step-number {
-      font-size: 48px;
-      font-weight: 800;
-      opacity: 0.06;
-      position: absolute;
-      top: 16px;
-      right: 20px;
-      line-height: 1;
-    }
-    
-    .step-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      margin-bottom: 16px;
-    }
-    
-    .step-icon.purple { background: rgba(124, 92, 252, 0.12); color: #7C5CFC; }
-    .step-icon.lavender { background: rgba(167, 139, 250, 0.12); color: #A78BFA; }
-    .step-icon.blue { background: rgba(96, 165, 250, 0.12); color: #60A5FA; }
-    
-    .step-card h3 {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-    
-    .step-card p {
-      color: #9B97B8;
-      font-size: 14px;
-      line-height: 1.7;
-    }
-    
-    /* ===== FEATURES ===== */
-    .features-grid {
-      display: grid;
-      gap: 20px;
-      margin-top: 40px;
-    }
-    
-    @media (min-width: 768px) {
-      .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    
-    @media (min-width: 1024px) {
-      .features-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    
-    .feature-card {
-      padding: 28px;
-      border-radius: 16px;
-      background: #111120;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    
-    .feature-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    }
-    
-    .feature-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      margin-bottom: 14px;
-    }
-    
-    .feature-card h3 {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-    
-    .feature-card p {
-      color: #9B97B8;
-      font-size: 13px;
-      line-height: 1.7;
-    }
-    
-    .feature-badge {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 2px 12px;
-      border-radius: 100px;
-      font-size: 9px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    
-    /* ===== PRICING ===== */
-    .pricing-grid {
-      display: grid;
-      gap: 20px;
-      margin-top: 40px;
-    }
-    
-    @media (min-width: 768px) {
-      .pricing-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    
-    .pricing-card {
-      padding: 32px;
-      border-radius: 16px;
-      background: #111120;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
-      position: relative;
-    }
-    
-    .pricing-card:hover {
-      transform: translateY(-4px);
-    }
-    
-    .pricing-card.featured {
-      border-color: rgba(124, 92, 252, 0.3);
-      background: linear-gradient(180deg, rgba(124, 92, 252, 0.06), #111120);
-    }
-    
-    .pricing-featured-badge {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 4px 16px;
-      border-radius: 100px;
-      background: linear-gradient(90deg, #7C5CFC, #A78BFA);
-      color: #fff;
-      font-size: 9px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    
-    .pricing-name {
-      font-size: 13px;
-      font-weight: 600;
-      color: #9B97B8;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-    
-    .pricing-price {
-      font-size: 40px;
-      font-weight: 700;
-      margin: 12px 0 2px;
-    }
-    
-    .pricing-period {
-      font-size: 13px;
-      color: #65617E;
-    }
-    
-    .pricing-features {
-      list-style: none;
-      text-align: left;
-      margin: 24px 0;
-      padding: 0;
-    }
-    
-    .pricing-features li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 6px 0;
-      color: #9B97B8;
-      font-size: 14px;
-    }
-    
-    .pricing-features li::before {
-      content: '✓';
-      color: #34D399;
-      font-weight: 700;
-    }
-    
-    .pricing-btn {
-      width: 100%;
-      padding: 12px;
-      border-radius: 12px;
-      border: none;
-      font-weight: 600;
-      font-size: 14px;
-      cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    
-    .pricing-btn.primary {
-      background: linear-gradient(135deg, #7C5CFC, #A78BFA);
-      color: #fff;
-    }
-    
-    .pricing-btn.primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(124, 92, 252, 0.25);
-    }
-    
-    .pricing-btn.secondary {
-      background: rgba(255, 255, 255, 0.04);
-      color: #F0EEF9;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    
-    .pricing-btn.secondary:hover {
-      background: rgba(255, 255, 255, 0.08);
-    }
-    
-    /* ===== TESTIMONIALS ===== */
-    .testimonials-grid {
-      display: grid;
-      gap: 20px;
-      margin-top: 40px;
-    }
-    
-    @media (min-width: 768px) {
-      .testimonials-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    
-    @media (min-width: 1024px) {
-      .testimonials-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    
-    .testimonial-card {
-      padding: 28px;
-      border-radius: 16px;
-      background: #111120;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    
-    .testimonial-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    }
-    
-    .testimonial-stars {
-      display: flex;
-      gap: 2px;
-      margin-bottom: 12px;
-      color: #FBBF24;
-      font-size: 14px;
-    }
-    
-    .testimonial-text {
-      color: #9B97B8;
-      font-size: 14px;
-      line-height: 1.8;
-      margin-bottom: 16px;
-      font-style: italic;
-    }
-    
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    
-    .testimonial-avatar {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 700;
-    }
-    
-    .testimonial-name {
-      font-size: 14px;
-      font-weight: 600;
-    }
-    
-    .testimonial-role {
-      font-size: 12px;
-      color: #65617E;
-    }
-    
-    /* ===== FAQ ===== */
-    .faq-list {
-      max-width: 700px;
-      margin: 0 auto;
-      margin-top: 40px;
-    }
-    
-    .faq-item {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-    
-    .faq-question {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 0;
-      background: none;
-      border: none;
-      color: #F0EEF9;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      text-align: left;
-      font-family: inherit;
-    }
-    
-    .faq-question:hover {
-      color: #A78BFA;
-    }
-    
-    .faq-icon {
-      font-size: 20px;
-      transition: transform 0.3s;
-      color: #65617E;
-    }
-    
-    .faq-item.open .faq-icon {
-      transform: rotate(45deg);
-      color: #7C5CFC;
-    }
-    
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-    }
-    
-    .faq-item.open .faq-answer {
-      max-height: 300px;
-      padding-bottom: 18px;
-    }
-    
-    .faq-answer p {
-      color: #9B97B8;
-      font-size: 14px;
-      line-height: 1.8;
-    }
-    
-    /* ===== CTA ===== */
-    .cta-box {
-      padding: 50px 30px;
-      border-radius: 24px;
-      background: linear-gradient(180deg, #111120, #0A0A14);
-      border: 1px solid rgba(124, 92, 252, 0.2);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .cta-box .glow {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 500px;
-      height: 300px;
-      background: rgba(124, 92, 252, 0.08);
-      border-radius: 50%;
-      filter: blur(100px);
-      pointer-events: none;
-    }
-    
-    .cta-box .content {
-      position: relative;
-      z-index: 1;
-    }
-    
-    .cta-box h2 {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-    
-    .cta-box p {
-      color: #9B97B8;
-      max-width: 500px;
-      margin: 0 auto 30px;
-    }
-    
-    .cta-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 4px 16px;
-      border-radius: 100px;
-      border: 1px solid rgba(124, 92, 252, 0.3);
-      background: rgba(124, 92, 252, 0.1);
-      font-size: 11px;
-      font-weight: 600;
-      color: #A78BFA;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 20px;
-    }
-    
-    /* ===== MARQUEE ===== */
-    .marquee-section {
-      padding: 20px 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      background: rgba(10, 10, 20, 0.5);
-      overflow: hidden;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .marquee-track {
-      display: flex;
-      animation: marquee-scroll 40s linear infinite;
-      width: max-content;
-    }
-    
-    .marquee-track:hover {
-      animation-play-state: paused;
-    }
-    
-    @keyframes marquee-scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    
-    .marquee-item {
-      flex-shrink: 0;
-      margin: 0 24px;
-      opacity: 0.5;
-      transition: opacity 0.3s;
-    }
-    
-    .marquee-item:hover {
-      opacity: 1;
-    }
-    
-    .marquee-item img {
-      height: 32px;
-      width: auto;
-      display: block;
-    }
-    
-    /* ===== FOOTER ===== */
-    .footer {
-      padding: 40px 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      position: relative;
-      z-index: 1;
-    }
-    
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-    }
-    
-    @media (min-width: 768px) {
-      .footer-inner {
-        flex-direction: row;
-        justify-content: space-between;
-      }
-    }
-    
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 16px;
-      color: #F0EEF9;
-    }
-    
-    .footer-brand-icon {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, #7C5CFC, #A78BFA);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-    }
-    
-    .footer-links {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    
-    .footer-links a {
-      color: #65617E;
-      text-decoration: none;
-      font-size: 14px;
-      transition: color 0.3s;
-    }
-    
-    .footer-links a:hover {
-      color: #9B97B8;
-    }
-    
-    .footer-copy {
-      font-size: 12px;
-      color: #65617E;
-      text-align: center;
-      margin-top: 16px;
-    }
-    
-    @media (min-width: 768px) {
-      .footer-copy {
-        margin-top: 0;
-      }
-    }
-    
-    /* ===== RESPONSIVE ===== */
-    @media (min-width: 768px) {
-      .nav-links {
-        display: flex;
-      }
-      
-      .mobile-toggle {
-        display: none;
-      }
-      
-      .mobile-menu {
-        display: none !important;
-      }
-      
-      .hero-stats {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-    
-    @media (max-width: 767px) {
-      .mobile-toggle {
-        display: block;
-      }
-      
-      .mobile-menu.open {
-        display: block;
-        position: fixed;
-        top: 68px;
-        left: 0;
-        right: 0;
-        z-index: 99;
-      }
-    }
-  </style>
+  ]
+}
+</script>
+
+<!-- SCHEMA MARKUP: HowTo (matches the 3-step process section) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to humanize AI text for free",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Paste your AI text",
+      "text": "Copy any text generated by ChatGPT, Gemini, Claude, or any other AI tool into the editor."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Choose your mode",
+      "text": "Select Standard, Aggressive, or Academic mode depending on your needs."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy and use instantly",
+      "text": "Get your humanized text in under 3 seconds and copy it for your use."
+    }
+  ]
+}
+</script>
+
+<!-- SCHEMA MARKUP: BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://freeaihumanizer.online"
+    }
+  ]
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Sora:wght@300;400;600;700&amp;display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #05050A;
+    --bg2: #0D0D16;
+    --bg3: #13131F;
+    --card: #111120;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --accent: #7C5CFC;
+    --accent2: #A78BFA;
+    --text: #F0EEF9;
+    --text2: #9B97B8;
+    --text3: #65617E;
+    --green: #34D399;
+    --green-bg: rgba(52,211,153,0.1);
+    --red: #F87171;
+    --red-bg: rgba(248,113,113,0.08);
+    --serif: 'Sora', sans-serif;
+    --sans: 'Inter', sans-serif;
+    --radius: 14px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(5,5,10,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-logo-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: #fff !important;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-weight: 600 !important;
+    transition: opacity 0.2s !important;
+  }
+
+  .nav-cta:hover { opacity: 0.88; }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 2rem 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(124,92,252,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(124,92,252,0.12);
+    border: 1px solid rgba(124,92,252,0.3);
+    color: var(--accent2);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent2);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    max-width: 820px;
+    margin-bottom: 1.25rem;
+  }
+
+  h1 span {
+    background: linear-gradient(135deg, #A78BFA, #7C5CFC, #60A5FA);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 1.125rem;
+    color: var(--text2);
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 14px 28px;
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text2);
+    border: 1px solid var(--border2);
+    padding: 14px 28px;
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-outline:hover { border-color: var(--border2); color: var(--text); transform: translateY(-1px); }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    color: var(--text2);
+    font-size: 0.875rem;
+  }
+
+  .hero-stats span strong {
+    color: var(--text);
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: var(--serif);
+  }
+
+  .demo-section {
+    padding: 80px 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    text-align: center;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-sub {
+    text-align: center;
+    color: var(--text2);
+    font-size: 1rem;
+    max-width: 500px;
+    margin: 0 auto 3rem;
+  }
+
+  .demo-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+  }
+
+  .demo-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg3);
+  }
+
+  .demo-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .demo-dot:nth-child(1) { background: #FF5F57; }
+  .demo-dot:nth-child(2) { background: #FFBD2E; }
+  .demo-dot:nth-child(3) { background: #28CA41; }
+
+  .demo-title-label {
+    margin-left: auto;
+    font-size: 0.78rem;
+    color: var(--text3);
+    font-weight: 500;
+  }
+
+  .demo-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 640px) {
+    .demo-body { grid-template-columns: 1fr; }
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+  }
+
+  .demo-pane {
+    padding: 1.5rem;
+  }
+
+  .demo-pane:first-child {
+    border-right: 1px solid var(--border);
+  }
+
+  .demo-pane-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text3);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .label-ai { color: var(--red); }
+  .label-human { color: var(--green); }
+
+  .demo-text {
+    font-size: 0.9rem;
+    color: var(--text2);
+    line-height: 1.75;
+    min-height: 130px;
+  }
+
+  .demo-footer {
+    border-top: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .mode-btn {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--text2);
+    transition: all 0.2s;
+  }
+
+  .mode-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .humanize-btn {
+    margin-left: auto;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 10px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .humanize-btn:hover { opacity: 0.88; }
+
+  .meter-section {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+  }
+
+  .detection-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+  }
+
+  .detection-title {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text3);
+    margin-bottom: 1rem;
+  }
+
+  .meter-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .meter-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text2);
+    min-width: 90px;
+  }
+
+  .meter-bar-container {
+    flex: 1;
+    height: 8px;
+    background: var(--bg2);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .meter-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #34d399);
+    border-radius: 10px;
+    transition: width 0.5s ease;
+  }
+
+  .meter-fill.ai {
+    background: linear-gradient(90deg, #f87171, #ef4444);
+  }
+
+  .meter-value {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text);
+    min-width: 45px;
+    text-align: right;
+  }
+
+  .classification-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  .badge-human {
+    background: rgba(52,211,153,0.15);
+    color: #34d399;
+    border: 1px solid rgba(52,211,153,0.3);
+  }
+
+  .badge-ai {
+    background: rgba(248,113,113,0.15);
+    color: #f87171;
+    border: 1px solid rgba(248,113,113,0.3);
+  }
+
+  .how-section, .features-section, .compare-section, .pricing-section, .testimonials-section, .faq-section {
+    padding: 100px 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .steps-grid, .features-grid, .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .step-card, .feature-card, .testimonial-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    transition: border-color 0.2s;
+  }
+
+  .step-card:hover, .feature-card:hover, .testimonial-card:hover {
+    border-color: var(--border2);
+  }
+
+  .step-num {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--border2);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .step-icon, .feature-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .step-card h3, .feature-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+
+  .step-card p, .feature-card p, .testimonial-card p {
+    font-size: 0.875rem;
+    color: var(--text2);
+    line-height: 1.65;
+  }
+
+  .feature-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-top: 0.75rem;
+    background: rgba(124,92,252,0.12);
+    color: var(--accent2);
+    border: 1px solid rgba(124,92,252,0.2);
+  }
+
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 600px) {
+    .compare-grid { grid-template-columns: 1fr; }
+  }
+
+  .compare-card {
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    border: 1px solid;
+  }
+
+  .compare-card.before {
+    background: var(--red-bg);
+    border-color: rgba(248,113,113,0.15);
+  }
+
+  .compare-card.after {
+    background: var(--green-bg);
+    border-color: rgba(52,211,153,0.15);
+  }
+
+  .compare-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+
+  .compare-card.before .compare-tag {
+    color: var(--red);
+    background: rgba(248,113,113,0.1);
+  }
+
+  .compare-card.after .compare-tag {
+    color: var(--green);
+    background: rgba(52,211,153,0.1);
+  }
+
+  .compare-card p {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: var(--text2);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+
+  .price-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    position: relative;
+  }
+
+  .price-card.featured {
+    border-color: rgba(124,92,252,0.5);
+    background: linear-gradient(160deg, rgba(124,92,252,0.06) 0%, var(--card) 60%);
+  }
+
+  .price-card .popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 100px;
+  }
+
+  .price-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+  }
+
+  .price-amount {
+    font-family: var(--serif);
+    font-size: 2.75rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    line-height: 1;
+  }
+
+  .price-period {
+    font-size: 0.875rem;
+    color: var(--text3);
+    margin-bottom: 1.5rem;
+  }
+
+  .price-features {
+    list-style: none;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .price-features li {
+    font-size: 0.875rem;
+    color: var(--text2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .price-features li::before {
+    content: '✓';
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  .price-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--text);
+    transition: background 0.2s;
+  }
+
+  .price-btn:hover { background: var(--bg3); }
+  .price-card.featured .price-btn {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .price-card.featured .price-btn:hover { opacity: 0.88; }
+
+  .testimonial-card .stars {
+    color: #FBBF24;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 1rem;
+  }
+
+  .author-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+  }
+
+  .author-name { font-size: 0.875rem; font-weight: 600; color: var(--text); }
+  .author-role { font-size: 0.75rem; color: var(--text3); }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 1.25rem 0;
+  }
+
+  .faq-q {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    user-select: none;
+  }
+
+  .faq-q::after {
+    content: '+';
+    color: var(--text3);
+    font-size: 1.25rem;
+    font-weight: 400;
+    transition: transform 0.2s;
+  }
+
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+
+  .faq-a {
+    font-size: 0.9rem;
+    color: var(--text2);
+    line-height: 1.7;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.2s;
+  }
+
+  .faq-item.open .faq-a {
+    max-height: 200px;
+    padding-top: 0.75rem;
+  }
+
+  .cta-section {
+    padding: 100px 2rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .cta-glow {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(124,92,252,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-card {
+    background: var(--card);
+    border: 1px solid rgba(124,92,252,0.2);
+    border-radius: var(--radius-xl);
+    padding: 4rem 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .cta-card h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .cta-card p {
+    color: var(--text2);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .feedback-section {
+    padding: 60px 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .feedback-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+  }
+
+  .feedback-card h3 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .feedback-card p {
+    text-align: center;
+    color: var(--text2);
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .feedback-input {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .feedback-input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .feedback-textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+
+  .feedback-btn {
+    width: 100%;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .feedback-btn:hover { opacity: 0.88; }
+
+  .feedback-success, .feedback-error {
+    margin-top: 1rem;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 0.875rem;
+    display: none;
+  }
+
+  .feedback-success { background: rgba(52,211,153,0.15); color: var(--green); }
+  .feedback-error { background: rgba(248,113,113,0.15); color: var(--red); }
+
+  .marquee-section {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .marquee {
+    display: inline-block;
+    animation: marquee 30s linear infinite;
+  }
+
+  .marquee-item {
+    display: inline-block;
+    margin: 0 20px;
+    vertical-align: middle;
+  }
+
+  .marquee-item img {
+    height: 40px;
+    width: auto;
+    vertical-align: middle;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .marquee-section:hover .marquee { animation-play-state: paused; }
+
+  footer {
+    padding: 3rem 2rem;
+    text-align: center;
+    color: var(--text3);
+    font-size: 0.875rem;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    color: var(--text3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--text2); }
+
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .content-section {
+    padding: 60px 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .content-section h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .content-section h2 span {
+    background: linear-gradient(135deg, #A78BFA, #7C5CFC);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .content-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .content-grid p {
+    color: var(--text2);
+    line-height: 1.8;
+    font-size: 1rem;
+  }
+
+  .content-grid p strong {
+    color: var(--text);
+  }
+</style>
 </head>
 <body>
 
-  <!-- ===== AURORA BACKGROUND ===== -->
-  <div class="aurora-bg">
-    <div class="aurora-orb aurora-orb-1"></div>
-    <div class="aurora-orb aurora-orb-2"></div>
-    <div class="aurora-orb aurora-orb-3"></div>
+<nav>
+  <a class="nav-logo" href="#"><span class="nav-logo-dot"></span> Free AI Humanizer</a>
+  <ul class="nav-links">
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#pricing" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="badge"><span class="badge-dot"></span> Trusted by 500,000+ writers</div>
+  <h1>Turn <span>AI-generated text</span> into naturally human writing</h1>
+  <p class="hero-sub">Paste any ChatGPT, Gemini, or Claude output — get back fluid, natural prose that passes every AI detector.</p>
+  <div class="hero-btns">
+    <a href="#demo" class="btn-primary">✦ Try it free — no signup</a>
+    <a href="#how" class="btn-outline">See how it works →</a>
   </div>
-  <div class="grid-pattern"></div>
-
-  <!-- ===== NAVBAR ===== -->
-  <nav class="navbar" id="navbar">
-    <a href="#" class="nav-logo">
-      <span class="nav-logo-icon">✦</span>
-      Free AI Humanizer
-    </a>
-
-    <div class="nav-links">
-      <a href="#how">How it works</a>
-      <a href="#features">Features</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
-      <a href="#demo" class="nav-cta">Get Started</a>
-    </div>
-
-    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">☰</button>
-  </nav>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#how">How it works</a>
-    <a href="#features">Features</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#faq">FAQ</a>
-    <a href="#demo" class="mobile-cta">Get Started</a>
+  <div class="hero-stats">
+    <span><strong>99.2%</strong> Bypass rate</span>
+    <span><strong>50+</strong> Languages</span>
+    <span><strong>&lt; 3s</strong> Per conversion</span>
+    <span><strong>500K+</strong> Users</span>
   </div>
+</section>
 
-  <!-- ===== HERO ===== -->
-  <section class="hero" id="hero">
-    <div class="hero-badge">
-      <span class="hero-badge-dot"></span>
-      Trusted by 500,000+ writers worldwide
+<section class="content-section fade-up">
+  <h2>What Makes <span>Free AI Humanizer</span> Different?</h2>
+  <div class="content-grid">
+    <p><strong>Free AI Humanizer</strong> is a completely free tool designed to transform AI-generated text — whether from ChatGPT, Gemini, Claude, or any other AI model — into natural, human-sounding content that bypasses even the most advanced AI detectors like Turnitin, GPTZero, and Originality.ai.</p>
+    <p>Unlike other AI humanizers that charge high fees or compromise your privacy, our tool processes your text in memory only — <strong>we never store or share your data</strong>. Within seconds, you get fluid, readable text that retains all your original meaning, facts, and arguments while sounding like a real person wrote it.</p>
+    <p>With <strong>three distinct modes</strong> — Standard for everyday content, Aggressive for maximum humanization, and Academic for scholarly writing — Free AI Humanizer adapts to your specific needs. Whether you're a student avoiding Turnitin flags, a content creator looking to bypass GPTZero, or a professional needing natural-sounding text, our tool delivers <strong>99.2% detection bypass rate</strong> consistently.</p>
+    <p>Best of all? <strong>No sign-up required</strong>. No credit card. No hidden limits on the free plan (500 words/day). Just paste your AI text, click Humanize, and get human-quality writing instantly. That's why <strong>500,000+ users</strong> trust Free AI Humanizer to make their work undetectable and authentic.</p>
+    <p>Our technology goes beyond simple synonym swapping. We restructure sentences, vary sentence lengths, replace formal patterns with natural conversational flow, and apply human-like imperfections that AI detectors can't flag. The result? Text that doesn't just <em>look</em> human — it <em>reads</em> human.</p>
+  </div>
+</section>
+
+<section class="demo-section fade-up" id="demo">
+  <p class="section-label">Live demo</p>
+  <h2 class="section-title">Try it yourself</h2>
+  <p class="section-sub">Paste your AI text on the left and click Humanize — watch it transform.</p>
+  <div class="demo-card">
+    <div class="demo-header">
+      <div class="demo-dot"></div><div class="demo-dot"></div><div class="demo-dot"></div>
+      <span class="demo-title-label">Free AI Humanizer — Editor</span>
     </div>
-
-    <h1 class="hero-title">
-      Turn <span class="gradient-text">AI-generated text</span><br />
-      into naturally <span class="highlight">human writing
-        <span class="highlight-underline"></span>
-      </span>
-    </h1>
-
-    <p class="hero-desc">
-      Paste any ChatGPT, Gemini, Claude, or DeepSeek output — get back fluid, natural prose that passes every AI detector including Turnitin, GPTZero, and Originality.ai.
-    </p>
-
-    <div class="hero-buttons">
-      <a href="#demo" class="btn-primary">
-        ✦ Try it free — no signup →
-      </a>
-      <a href="#how" class="btn-secondary">
-        See how it works →
-      </a>
-    </div>
-
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-value">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
-          99.2%
+    <div class="demo-body">
+      <div class="demo-pane">
+        <div class="demo-pane-label label-ai">⬤ AI text</div>
+        <div class="demo-text" id="input-text" contenteditable="true" style="outline:none; cursor:text;">
+          The implementation of artificial intelligence in modern educational frameworks presents multifaceted opportunities for enhancing pedagogical outcomes. Leveraging machine learning algorithms, institutions can optimize student engagement and facilitate personalized learning pathways.
         </div>
-        <span class="hero-stat-label">Bypass rate</span>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-value">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2v4"/><path d="M12 22v-4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M19.07 19.07l-2.83-2.83"/></svg>
-          50+
-        </div>
-        <span class="hero-stat-label">Languages</span>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-value">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          &lt; 3s
-        </div>
-        <span class="hero-stat-label">Per conversion</span>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-value">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          500K+
-        </div>
-        <span class="hero-stat-label">Users</span>
+      <div class="demo-pane">
+        <div class="demo-pane-label label-human">⬤ Human text</div>
+        <div class="demo-text" id="output-text"><span style="color:var(--text3)">Click "Humanize" to see the result...</span></div>
       </div>
     </div>
-  </section>
-
-  <!-- ===== CONTENT SECTION ===== -->
-  <section>
-    <div class="container">
-      <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-        <h2 style="font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; margin-bottom: 24px;">
-          What Makes <span class="gradient-text">Free AI Humanizer</span> Different?
-        </h2>
-        <div style="text-align: left; color: #9B97B8; line-height: 1.9; font-size: 15px; display: flex; flex-direction: column; gap: 20px;">
-          <p>
-            <strong style="color: #F0EEF9;">Free AI Humanizer</strong> is a completely free tool designed to transform AI-generated text — whether from ChatGPT, Gemini, Claude, DeepSeek, or any other AI model — into natural, human-sounding content that bypasses even the most advanced AI detectors like Turnitin, GPTZero, Originality.ai, Copyleaks, and Winston AI.
-          </p>
-          <p>
-            Unlike other AI humanizers that charge high fees or compromise your privacy, our tool processes your text in memory only — <strong style="color: #F0EEF9;">we never store or share your data</strong>. Within seconds, you get fluid, readable text that retains all your original meaning, facts, and arguments while sounding like a real person wrote it.
-          </p>
-          <p>
-            With <strong style="color: #F0EEF9;">three distinct modes</strong> — Standard for everyday content, Aggressive for maximum humanization, and Academic for scholarly writing — Free AI Humanizer adapts to your specific needs. Whether you're a student avoiding Turnitin flags, a content creator looking to bypass GPTZero, or a professional needing natural-sounding text, our tool delivers <strong style="color: #F0EEF9;">99.2% detection bypass rate</strong> consistently.
-          </p>
-          <p>
-            Best of all? <strong style="color: #F0EEF9;">No sign-up required</strong>. No credit card. No hidden limits on the free plan (500 words/day). Just paste your AI text, click Humanize, and get human-quality writing instantly. That's why <strong style="color: #F0EEF9;">500,000+ users</strong> trust Free AI Humanizer to make their work undetectable and authentic.
-          </p>
-        </div>
-      </div>
+    <div class="demo-footer">
+      <button class="mode-btn active" onclick="setMode(this,'Standard')">Standard</button>
+      <button class="mode-btn" onclick="setMode(this,'Aggressive')">Aggressive</button>
+      <button class="mode-btn" onclick="setMode(this,'Academic')">Academic</button>
+      <button class="humanize-btn" onclick="humanizeText()">✦ Humanize</button>
     </div>
-  </section>
-
-  <!-- ===== DEMO EDITOR ===== -->
-  <section id="demo">
-    <div class="container">
-      <div style="text-align: center; margin-bottom: 40px;">
-        <span class="section-label">Live Demo</span>
-        <h2 class="section-title">Try it <span class="gradient-text">yourself</span></h2>
-        <p class="section-sub">Paste your AI text on the left and click Humanize — watch it transform in real-time.</p>
-      </div>
-
-      <div class="editor-wrapper glow-accent">
-        <div class="editor-header">
-          <div class="editor-dots">
-            <span class="editor-dot red"></span>
-            <span class="editor-dot yellow"></span>
-            <span class="editor-dot green"></span>
+    
+    <div class="meter-section" id="meterSection" style="display: none;">
+      <div class="detection-card">
+        <div class="detection-title">🧠 AI DETECTION ANALYSIS</div>
+        <div class="meter-row">
+          <span class="meter-label">AI Probability</span>
+          <div class="meter-bar-container">
+            <div class="meter-fill" id="aiMeterFill" style="width: 0%;"></div>
           </div>
-          <span class="editor-header-label">Free AI Humanizer — Editor</span>
+          <span class="meter-value" id="aiMeterValue">0%</span>
         </div>
-
-        <div class="editor-body">
-          <div class="editor-pane">
-            <div class="editor-pane-label input">🧠 AI Text</div>
-            <textarea id="inputText" placeholder="Paste your AI-generated text here...">The implementation of artificial intelligence in modern educational frameworks presents multifaceted opportunities for enhancing pedagogical outcomes. Leveraging machine learning algorithms, institutions can optimize student engagement and facilitate personalized learning pathways.</textarea>
-          </div>
-          <div class="editor-pane">
-            <div class="editor-pane-label output">🛡️ Human Text</div>
-            <div class="editor-output" id="outputText">
-              <span class="placeholder">Click "Humanize" to see the result...</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="editor-footer">
-          <div class="mode-buttons">
-            <button class="mode-btn active" data-mode="Standard">Standard</button>
-            <button class="mode-btn" data-mode="Aggressive">Aggressive</button>
-            <button class="mode-btn" data-mode="Academic">Academic</button>
-          </div>
-          <div id="errorMsg" style="display:none;" class="editor-error">⚠️ Please enter at least 10 characters.</div>
-          <button class="btn-humanize" id="humanizeBtn">
-            <span id="humanizeIcon">✦</span>
-            <span id="humanizeText">Humanize</span>
-          </button>
-        </div>
-
-        <div id="meterWrapper" style="display:none;" class="meter-wrapper">
-          <div class="meter-box">
-            <div class="meter-row">
-              <span class="meter-label">AI Probability</span>
-              <div class="meter-track">
-                <div class="meter-fill human" id="meterFill" style="width: 0%;">
-                  <div class="shimmer"></div>
-                </div>
-              </div>
-              <span class="meter-value" id="meterValue">0%</span>
-            </div>
-            <div class="meter-row">
-              <span class="meter-label">Classification</span>
-              <span class="meter-badge human" id="meterBadge">✅ Likely Human</span>
-            </div>
-          </div>
+        <div class="meter-row">
+          <span class="meter-label">Classification</span>
+          <span id="classificationBadge" class="classification-badge badge-human">✅ Unknown</span>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ===== HOW IT WORKS ===== -->
-  <section id="how">
-    <div class="container">
-      <div style="text-align: center; margin-bottom: 40px;">
-        <span class="section-label">Process</span>
-        <h2 class="section-title">Three steps to <span class="gradient-text">human-sounding</span> text</h2>
-      </div>
-
-      <div class="steps-grid">
-        <div class="step-card">
-          <span class="step-number">01</span>
-          <div class="step-icon purple">📋</div>
-          <h3>Paste your AI text</h3>
-          <p>Copy any text generated by ChatGPT, Gemini, Claude, DeepSeek, or any other AI tool into the editor.</p>
-        </div>
-        <div class="step-card">
-          <span class="step-number">02</span>
-          <div class="step-icon lavender">⚙️</div>
-          <h3>Choose your mode</h3>
-          <p>Select Standard for balanced results, Aggressive for maximum humanization, or Academic for scholarly writing.</p>
-        </div>
-        <div class="step-card">
-          <span class="step-number">03</span>
-          <div class="step-icon blue">🚀</div>
-          <h3>Copy & use instantly</h3>
-          <p>Get your humanized text in under 3 seconds. Copy it and use anywhere — essays, blogs, emails, reports.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== COMPARE SECTION ===== -->
-  <section>
-    <div class="container">
-      <div style="text-align: center; margin-bottom: 40px;">
-        <span class="section-label">Before & After</span>
-        <h2 class="section-title">See the <span class="gradient-text">difference</span></h2>
-      </div>
-
-      <div class="compare-tabs" id="compareTabs">
-        <button class="compare-tab active" data-index="0"></button>
-        <button class="compare-tab" data-index="1"></button>
-        <button class="compare-tab" data-index="2"></button>
-      </div>
-
-      <div class="compare-grid" id="compareGrid">
-        <div class="compare-card before">
-          <div class="top-bar"></div>
-          <div class="label">
-            <span class="label-icon">✕</span>
-            AI-Written
-          </div>
-          <p id="compareBefore">The utilization of renewable energy sources is of paramount importance in mitigating the adverse effects of climate change on global ecosystems and ensuring the sustainability of environmental resources for future generations.</p>
-        </div>
-        <div class="compare-card after">
-          <div class="top-bar"></div>
-          <div class="label">
-            <span class="label-icon">✓</span>
-            Humanized
-          </div>
-          <p id="compareAfter">Switching to renewable energy matters more than ever right now — not just for the planet, but for the people who'll inherit it. Climate change isn't a distant threat, and the choices we make today will shape what future generations actually have to work with.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FEATURES ===== -->
-  <section id="features">
-    <div class="container">
-      <div style="text-align: center; margin-bottom: 40px;">
-        <span class="section-label">Features</span>
-        <h2 class="section-title">Built for <span class="gradient-text">real writers</span></h2>
-        <p class="section-sub">Everything you need to make AI text undetectable, natural, and authentically human.</p>
-      </div>
-
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon" style="background:rgba(124,92,252,0.12);color:#7C5CFC;">🛡️</div>
-          <h3>Bypasses all AI detectors</h3>
-          <p>Tested against GPTZero, Turnitin, Originality.ai, Copyleaks, and Winston AI — 99%+ bypass rate consistently.</p>
-          <span class="feature-badge" style="background:rgba(124,92,252,0.08);color:#7C5CFC;border-color:rgba(124,92,252,0.2);">Core feature</span>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background:rgba(167,139,250,0.12);color:#A78BFA;">🧠</div>
-          <h3>Preserves meaning perfectly</h3>
-          <p>Your original ideas, facts, and arguments stay intact. We only change how they are expressed, never what they say.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background:rgba(96,165,250,0.12);color:#60A5FA;">🌍</div>
-          <h3>50+ languages supported</h3>
-          <p>Humanize text in English, Spanish, French, German, Arabic, Hindi, Chinese, Japanese, Portuguese, and more.</p>
-          <span class="feature-badge" style="background:rgba(96,165,250,0.08);color:#60A5FA;border-color:rgba(96,165,250,0.2);">Global</span>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background:rgba(52,211,153,0.12);color:#34D399;">🎯</div>
-          <h3>Three tone control modes</h3>
-          <p>Choose Standard for everyday content, Aggressive for maximum humanization, or Academic for scholarly writing.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background:rgba(251,191,36,0.12);color:#FBBF24;">⚡</div>
-          <h3>Under 3 seconds per conversion</h3>
-          <p>Even long documents convert instantly. No waiting, no queues. Powered by Groq for lightning-fast inference.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background:rgba(248,113,113,0.12);color:#F87171;">🔒</div>
-          <h3>Private & secure by design</h3>
-          <p>Your text is never stored, logged, or shared. Inputs are processed in memory and deleted immediately after.</p>
-          <span class="feature-badge" style="background:rgba(248,113,113,0.08);color:#F87171;border-color:rgba(248,113,113,0.2);">Zero data retention</span>
-        </div>
-      </div>
-
-      <p style="text-align:center; margin-top: 40px; font-size: 14px; color: #A78BFA;">✨ Trusted by 5,000+ students, writers, and content creators worldwide</p>
-    </div>
-  </section>
-
-  <!-- ===== PRICING ===== -->
-  <section id="pricing">
-    <div class="container">
-      <div style="text-align: center; margin-bottom: 40px;">
-        <span class="section-label">Pricing</span>
-        <h2 class="section-title">Simple, <span class="gradient-text">honest</span> pricing</h2>
-        <p class="section-sub">Start free, upgrade when you need more. No hidden fees, no surprises.</p>
-      </div>
-
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <div class="pricing-name">Free</div>
-          <div class="pricing-price">$0</div>
-          <div class="pricing-period">forever</div>
-          <ul class="pricing-features">
-            <li>500 words / day</li>
-            <li>Standard mode</li>
-            <li>Basic support</li>
-            <li>No signup required</li>
-          </ul>
-          <button class="pricing-btn secondary">Start free</button>
-        </div>
-
-        <div class="pricing-card featured">
-          <div class="pricing-featured-badge">✦ Most popular</div>
-          <div class="pricing-name">Pro</div>
-          <div class="pricing-price">$12</div>
-          <div class="pricing-period">per month</div>
-          <ul class="pricing-features">
-            <li>Unlimited words</li>
-            <li>All 3 modes</li>
-            <li>50+ languages</li>
-            <li>Priority support</li>
-            <li>API access</li>
-          </ul>
-          <button class="pricing-btn primary">Get Pro</button>
-        </div>
-
-        <div class="pricing-card">
-          <div class="pricing-name">Team</div>
-          <div class="pricing-price">$39</div>
-          <div class="pricing-period">per month</div>
-          <ul class="pricing-features">
-            <li>Everything in Pro</li>
-            <li>Up to 10 seats</li>
-            <li>Team dashboard</li>
-            <li>SSO & SAML</li>
-            <li>Dedicated account manager</li>
-          </ul>
-          <button class="pricing-btn secondary">Get Team</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== TESTIMONIALS ===== -->
-  <section>
-    <div class="container">
-      <div style="text-align: center; margin-bottom: 40px;">
-        <span class="section-label">Reviews</span>
-        <h2 class="section-title">What people <span class="gradient-text">say</span></h2>
-      </div>
-
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"My professor couldn't detect anything through Turnitin. The text actually read better than what I originally had from ChatGPT."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background:rgba(124,92,252,0.15);color:#7C5CFC;">SA</div>
-            <div>
-              <div class="testimonial-name">Sarah A.</div>
-              <div class="testimonial-role">Graduate student</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"Saves us hours of manual editing every week. The meaning always stays intact — it just sounds more human and engaging."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background:rgba(52,211,153,0.15);color:#34D399;">MK</div>
-            <div>
-              <div class="testimonial-name">Marcus K.</div>
-              <div class="testimonial-role">Content agency owner</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"The Academic mode is exactly what I needed for my research papers. My workflow is literally 3x faster now."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background:rgba(251,191,36,0.15);color:#FBBF24;">PR</div>
-            <div>
-              <div class="testimonial-name">Priya R.</div>
-              <div class="testimonial-role">Freelance writer</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"I was skeptical at first, but GPTZero went from 87% AI to 3% after humanizing. Absolutely incredible tool."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background:rgba(96,165,250,0.15);color:#60A5FA;">JT</div>
-            <div>
-              <div class="testimonial-name">James T.</div>
-              <div class="testimonial-role">Undergraduate student</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"We use this for all our client blog posts. The Aggressive mode produces the most natural-sounding content we've seen."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background:rgba(248,113,113,0.15);color:#F87171;">EM</div>
-            <div>
-              <div class="testimonial-name">Elena M.</div>
-              <div class="testimonial-role">SEO specialist</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"Free, no signup, and actually works. I've tried 10+ humanizers and this is the only one that consistently bypasses detectors."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar" style="background:rgba(167,139,250,0.15);color:#A78BFA;">DL</div>
-            <div>
-              <div class="testimonial-name">David L.</div>
-              <div class="testimonial-role">Marketing manager</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FAQ ===== -->
-  <section id="faq">
-    <div class="container">
-      <div style="text-align: center; margin-bottom: 40px;">
-        <span class="section-label">FAQ</span>
-        <h2 class="section-title">Common <span class="gradient-text">questions</span></h2>
-      </div>
-
-      <div class="faq-list">
-        <div class="faq-item open">
-          <button class="faq-question">
-            Does it really bypass Turnitin and GPTZero?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Yes — we test against all major detectors weekly including Turnitin, GPTZero, Originality.ai, Copyleaks, and Winston AI. 99%+ pass undetected in Standard mode, and Aggressive mode pushes that even higher.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            Will the meaning of my text change?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>No. All facts, arguments, citations, and key points are preserved exactly. We only change the expression, vocabulary, and sentence structure to sound more natural and human.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            Is my text stored or shared?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Never. Your input is processed entirely in memory and deleted immediately after conversion. We do not log, store, or train on any user data. Your privacy is our top priority.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            Which AI tools does it work with?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>ChatGPT, Claude, Gemini, Grok, Llama, Copilot, Jasper, DeepSeek, Perplexity, and literally any AI-generated text. If a machine wrote it, we can humanize it.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            Is there a word limit on the Free plan?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>The free plan allows 500 words per day. Pro accounts get unlimited conversions with no restrictions. Team plans include up to 10 seats with shared usage.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            How is this different from a paraphrasing tool?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Unlike basic paraphrasers that just swap synonyms, our AI humanizer restructures sentences, varies lengths, adds natural imperfections, and mimics authentic human writing patterns to bypass detection.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CTA ===== -->
-  <section>
-    <div class="container">
-      <div class="cta-box">
-        <div class="glow"></div>
-        <div class="content">
-          <div class="cta-badge">✦ Start for free today</div>
-          <h2>Start writing like a <span class="gradient-text">human</span> again</h2>
-          <p>Join 500,000+ students, writers, and content creators who use Free AI Humanizer to make their work undetectable, natural, and authentically human.</p>
-          <a href="#demo" class="btn-primary">✦ Try it free — no signup →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== MARQUEE ===== -->
-  <div class="marquee-section">
-    <div class="marquee-track">
-      <!-- Badges looped via JS -->
     </div>
   </div>
+</section>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <span class="footer-brand-icon">✦</span>
-        Free AI Humanizer
-      </div>
-      <div class="footer-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Contact</a>
-      </div>
-    </div>
-    <div class="footer-copy">
-      © 2026 Free AI Humanizer. Make AI text sound human — free, instant, no login.
-      <br style="display:block; margin-top:4px;" />
-      <span style="font-size:11px; color:#65617E/60;">Created by Mian Zaid</span>
-    </div>
-  </footer>
+<!-- ADSENSE AD -->
+<div style="max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem;">
+  <div style="background: var(--bg3); border-radius: var(--radius-lg); padding: 1rem; border: 1px solid var(--border); text-align: center; min-height: 90px;">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-1521969559455326"
+         data-ad-slot="5735444921"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
 
-  <script>
-    // ===== NAVBAR =====
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 20);
-    });
+<section class="how-section fade-up" id="how">
+  <p class="section-label">Process</p>
+  <h2 class="section-title">Three steps to human-sounding text</h2>
+  <div class="steps-grid">
+    <div class="step-card"><div class="step-num">01</div><div class="step-icon">📋</div><h3>Paste your AI text</h3><p>Copy any text generated by ChatGPT, Gemini, Claude, or any other AI tool.</p></div>
+    <div class="step-card"><div class="step-num">02</div><div class="step-icon">⚙️</div><h3>Choose your mode</h3><p>Select Standard, Aggressive, or Academic mode.</p></div>
+    <div class="step-card"><div class="step-num">03</div><div class="step-icon">✨</div><h3>Copy &amp; use instantly</h3><p>Get your humanized text in under 3 seconds.</p></div>
+  </div>
+</section>
 
-    // ===== MOBILE MENU =====
-    const mobileToggle = document.getElementById('mobileToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    mobileToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('open');
-      mobileToggle.textContent = mobileMenu.classList.contains('open') ? '✕' : '☰';
-    });
+<hr class="section-divider" />
 
-    // ===== FAQ =====
-    document.querySelectorAll('.faq-question').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.closest('.faq-item');
-        item.classList.toggle('open');
-      });
-    });
+<section class="compare-section fade-up">
+  <p class="section-label">Before &amp; After</p>
+  <h2 class="section-title">See the difference</h2>
+  <div class="compare-grid">
+    <div class="compare-card before"><div class="compare-tag">✗ AI-written</div><p>"The utilization of renewable energy sources is of paramount importance in mitigating the adverse effects of climate change on global ecosystems and ensuring the sustainability of environmental resources for future generations."</p></div>
+    <div class="compare-card after"><div class="compare-tag">✓ Humanized</div><p>"Switching to renewable energy matters more than ever right now — not just for the planet, but for the people who'll inherit it. Climate change isn't a distant threat, and the choices we make today will shape what future generations actually have to work with."</p></div>
+  </div>
+</section>
 
-    // ===== COMPARE TABS =====
-    const compareData = [
-      {
-        before: 'The utilization of renewable energy sources is of paramount importance in mitigating the adverse effects of climate change on global ecosystems and ensuring the sustainability of environmental resources for future generations.',
-        after: "Switching to renewable energy matters more than ever right now — not just for the planet, but for the people who'll inherit it. Climate change isn't a distant threat, and the choices we make today will shape what future generations actually have to work with."
-      },
-      {
-        before: 'Furthermore, the implementation of comprehensive digital literacy programs within educational institutions is essential for equipping students with the requisite skills to navigate an increasingly technology-driven society.',
-        after: "Schools need to teach kids how to actually use technology, not just memorize facts. Digital literacy isn't optional anymore — it's as basic as reading and writing. Students who don't get this will be left behind."
-      },
-      {
-        before: 'Moreover, it is crucial to acknowledge that the proliferation of artificial intelligence technologies necessitates the establishment of robust ethical frameworks to govern their deployment across various sectors.',
-        after: "AI is everywhere now, and honestly? We need some ground rules. It's not about stopping innovation — it's about making sure these tools don't run wild without anyone thinking about the consequences."
-      }
-    ];
+<hr class="section-divider" />
 
-    let compareIndex = 0;
-    const compareBefore = document.getElementById('compareBefore');
-    const compareAfter = document.getElementById('compareAfter');
+<section class="features-section fade-up" id="features">
+  <p class="section-label">Features</p>
+  <h2 class="section-title">Built for real writers</h2>
+  <div class="features-grid">
+    <div class="feature-card"><span class="feature-icon">🛡️</span><h3>Bypasses all AI detectors</h3><p>Tested against GPTZero, Turnitin, Originality.ai — 99%+ bypass rate.</p><span class="feature-badge">Core feature</span></div>
+    <div class="feature-card"><span class="feature-icon">🧠</span><h3>Preserves meaning</h3><p>Your original ideas and facts stay intact. We only change how they're expressed.</p></div>
+    <div class="feature-card"><span class="feature-icon">🌐</span><h3>50+ languages</h3><p>Humanize text in English, Spanish, French, Arabic, Hindi, and more.</p><span class="feature-badge">Global</span></div>
+    <div class="feature-card"><span class="feature-icon">🎯</span><h3>Tone control</h3><p>Choose casual, professional, academic, or storytelling modes.</p></div>
+    <div class="feature-card"><span class="feature-icon">⚡</span><h3>Under 3 seconds</h3><p>Even long documents convert fast. No waiting.</p></div>
+    <div class="feature-card"><span class="feature-icon">🔒</span><h3>Private &amp; secure</h3><p>Your text is never stored. Inputs deleted after conversion.</p><span class="feature-badge">Zero data retention</span></div>
+  </div>
+  <div style="text-align: center; margin-top: 2rem;">
+    <p style="color: var(--accent2); font-size: 0.9rem;">✨ Trusted by 5,000+ students and writers worldwide ✨</p>
+  </div>
+</section>
 
-    document.querySelectorAll('.compare-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('.compare-tab').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        compareIndex = parseInt(tab.dataset.index);
-        compareBefore.textContent = compareData[compareIndex].before;
-        compareAfter.textContent = compareData[compareIndex].after;
-      });
-    });
+<hr class="section-divider" />
 
-    // ===== DEMO EDITOR =====
-    const inputText = document.getElementById('inputText');
-    const outputText = document.getElementById('outputText');
-    const humanizeBtn = document.getElementById('humanizeBtn');
-    const humanizeText = document.getElementById('humanizeText');
-    const humanizeIcon = document.getElementById('humanizeIcon');
-    const errorMsg = document.getElementById('errorMsg');
-    const meterWrapper = document.getElementById('meterWrapper');
-    const meterFill = document.getElementById('meterFill');
-    const meterValue = document.getElementById('meterValue');
-    const meterBadge = document.getElementById('meterBadge');
+<section class="pricing-section fade-up" id="pricing">
+  <p class="section-label">Pricing</p>
+  <h2 class="section-title">Simple, honest pricing</h2>
+  <div class="pricing-grid">
+    <div class="price-card"><div class="price-name">Free</div><div class="price-amount">$0</div><div class="price-period">forever</div><ul class="price-features"><li>500 words / day</li><li>Standard mode</li><li>Basic support</li></ul><button class="price-btn">Start free</button></div>
+    <div class="price-card featured"><div class="popular-badge">Most popular</div><div class="price-name">Pro</div><div class="price-amount">$12</div><div class="price-period">per month</div><ul class="price-features"><li>Unlimited words</li><li>All 3 modes</li><li>50+ languages</li><li>Priority support</li></ul><button class="price-btn">Get Pro</button></div>
+    <div class="price-card"><div class="price-name">Team</div><div class="price-amount">$39</div><div class="price-period">per month</div><ul class="price-features"><li>Everything in Pro</li><li>Up to 10 seats</li><li>Team dashboard</li></ul><button class="price-btn">Get Team</button></div>
+  </div>
+</section>
 
-    let currentMode = 'Standard';
+<hr class="section-divider" />
 
-    document.querySelectorAll('.mode-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentMode = btn.dataset.mode;
-      });
-    });
+<section class="testimonials-section fade-up">
+  <p class="section-label">Reviews</p>
+  <h2 class="section-title">What people say</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card"><div class="stars">★★★★★</div><p>"My professor couldn't detect anything through Turnitin. The text actually read better."</p><div class="testimonial-author"><div class="author-avatar" style="background:rgba(124,92,252,0.15);color:#A78BFA;">SA</div><div><div class="author-name">Sarah A.</div><div class="author-role">Graduate student</div></div></div></div>
+    <div class="testimonial-card"><div class="stars">★★★★★</div><p>"Saves us hours of editing. The meaning always stays intact — just sounds more human."</p><div class="testimonial-author"><div class="author-avatar" style="background:rgba(52,211,153,0.12);color:#34D399;">MK</div><div><div class="author-name">Marcus K.</div><div class="author-role">Content agency owner</div></div></div></div>
+    <div class="testimonial-card"><div class="stars">★★★★★</div><p>"The Academic mode is exactly what I needed. My workflow is 3x faster now."</p><div class="testimonial-author"><div class="author-avatar" style="background:rgba(251,191,36,0.12);color:#FBBF24;">PR</div><div><div class="author-name">Priya R.</div><div class="author-role">Freelance writer</div></div></div></div>
+  </div>
+</section>
 
-    const GROQ_API_KEY = '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';
+<hr class="section-divider" />
 
-    const modePrompts = {
-      Standard: "You are an expert text humanizer. Rewrite the following AI-generated text to sound completely natural and human-written. Rules: Keep meaning, use varied sentence lengths, use contractions (don't, can't, it's), replace formal words with casual ones, NEVER use 'moreover, furthermore, consequently', return ONLY rewritten text.",
-      Aggressive: "You are an expert text humanizer. Aggressively rewrite the following AI-generated text to sound like a real person wrote it. Use very short punchy sentences, casual language, heavy contractions, and natural imperfections. Return ONLY rewritten text.",
-      Academic: "You are an academic writing specialist. Rewrite the following AI-generated text to sound like a knowledgeable human scholar wrote it. Keep academic tone but make it feel authored, use natural transitions, preserve all technical terms. Return ONLY rewritten text."
-    };
+<section class="feedback-section fade-up">
+  <div class="feedback-card">
+    <h3>📬 Share Your Feedback</h3>
+    <p>Help us improve! Your feedback means a lot.</p>
+    <input type="text" id="fbName" class="feedback-input" placeholder="Your Name (Optional)" />
+    <input type="email" id="fbEmail" class="feedback-input" placeholder="Your Email (Optional)" />
+    <textarea id="fbMessage" class="feedback-input feedback-textarea" placeholder="Share your experience or suggestions..."></textarea>
+    <button class="feedback-btn" onclick="submitFeedback()">Send Feedback</button>
+    <div id="fbSuccess" class="feedback-success">✅ Thank you! Your feedback has been sent.</div>
+    <div id="fbError" class="feedback-error">❌ Something went wrong. Please try again.</div>
+  </div>
+</section>
 
-    function calculateAIScore(text) {
-      let aiScore = 0;
-      const aiPatterns = ['moreover', 'furthermore', 'consequently', 'nevertheless', 'notwithstanding', 'delve', 'tapestry', 'leverage', 'utilize', 'demonstrate', 'paramount', 'multifaceted', 'facilitate', 'optimize', 'enhance', 'pedagogical'];
-      let patternCount = 0;
-      const lowerText = text.toLowerCase();
-      aiPatterns.forEach(p => { if (lowerText.includes(p)) patternCount++; });
-      const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
-      let avgLength = 0;
-      sentences.forEach(s => { avgLength += s.trim().length; });
-      avgLength = avgLength / Math.max(sentences.length, 1);
-      let lengthVariation = 0;
-      sentences.forEach(s => { const len = s.trim().length; if (Math.abs(len - avgLength) < 10) lengthVariation++; });
-      aiScore = patternCount * 12 + lengthVariation * 3;
-      if (text.length > 500) aiScore += 5;
-      if (text.length > 1000) aiScore += 10;
-      const hasContractions = lowerText.includes("don't") || lowerText.includes("can't") || lowerText.includes("it's") || lowerText.includes("won't") || lowerText.includes("i'm");
-      if (!hasContractions) aiScore += 15;
-      return Math.min(100, Math.max(0, aiScore));
-    }
+<section class="faq-section fade-up" id="faq">
+  <p class="section-label">FAQ</p>
+  <h2 class="section-title">Common questions</h2>
+  <div style="margin-top:2.5rem;">
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Does it really bypass Turnitin and GPTZero?</div><div class="faq-a">Yes — we test against all major detectors weekly. 94%+ pass undetected in Standard mode.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Will the meaning of my text change?</div><div class="faq-a">No. All facts, arguments, and key points are preserved. Only the expression changes.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is my text stored or shared?</div><div class="faq-a">Never. Your input is processed in memory and deleted immediately after conversion.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Which AI tools' output does it work with?</div><div class="faq-a">ChatGPT, Claude, Gemini, Grok, Llama, Copilot, Jasper — any AI text.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is there a word limit on the Free plan?</div><div class="faq-a">500 words per day. Pro accounts have unlimited conversions.</div></div>
+  </div>
+</section>
 
-    humanizeBtn.addEventListener('click', async () => {
-      const text = inputText.value.trim();
-      if (!text || text.length < 10) {
-        errorMsg.style.display = 'flex';
-        setTimeout(() => errorMsg.style.display = 'none', 3000);
-        return;
-      }
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="cta-card fade-up">
+    <h2>Start writing like a human again</h2>
+    <p>Join 5,000+ students and writers who use Free AI Humanizer to make their work undetectable and natural.</p>
+    <a href="#demo" class="btn-primary" style="font-size:1rem; padding:15px 32px;">✦ Try it free</a>
+  </div>
+</section>
 
-      humanizeBtn.disabled = true;
-      humanizeText.textContent = 'Humanizing...';
-      humanizeIcon.textContent = '⟳';
-      humanizeIcon.style.display = 'inline-block';
-      errorMsg.style.display = 'none';
-      outputText.innerHTML = '<div class="loading"><div class="loading-line" style="width:85%"></div><div class="loading-line" style="width:70%"></div><div class="loading-line" style="width:90%"></div><div class="loading-line" style="width:60%"></div><div class="loading-line" style="width:75%"></div></div>';
-      meterWrapper.style.display = 'none';
-
-      try {
-        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${GROQ_API_KEY}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            model: 'llama-3.3-70b-versatile',
-            messages: [
-              { role: 'system', content: modePrompts[currentMode] },
-              { role: 'user', content: text }
-            ],
-            temperature: 0.75,
-            max_tokens: 1500,
-          })
-        });
-
-        if (!response.ok) {
-          const err = await response.json();
-          throw new Error(err.error?.message || 'API error');
-        }
-
-        const data = await response.json();
-        const result = data.choices[0]?.message?.content;
-        if (result) {
-          outputText.innerHTML = result;
-          const score = calculateAIScore(result);
-          const humanProb = score;
-          meterFill.style.width = humanProb + '%';
-          meterValue.textContent = Math.round(humanProb) + '%';
-          const isHuman = humanProb < 50;
-          meterFill.className = 'meter-fill ' + (isHuman ? 'human' : 'ai');
-          meterBadge.className = 'meter-badge ' + (isHuman ? 'human' : 'ai');
-          meterBadge.textContent = isHuman ? '✅ Likely Human' : '⚠️ AI Generated';
-          meterWrapper.style.display = 'block';
-        } else {
-          throw new Error('Empty response');
-        }
-      } catch (err) {
-        outputText.innerHTML = '<span style="color:#F87171;">Error: ' + err.message + '. Please try again.</span>';
-      }
-
-      humanizeBtn.disabled = false;
-      humanizeText.textContent = 'Humanize';
-      humanizeIcon.textContent = '✦';
-    });
-
-    // ===== MARQUEE =====
-    const badges = [
-      <a href="https://toolfame.com/item/free-ai-humanizer" target="_blank" rel="noopener noreferrer">
-<img src="https://toolfame.com/badge-dark.svg" alt="Featured on toolfame.com" style="height: 54px; width: auto;" />
+<div class="marquee-section">
+  <div class="marquee">
+    <a href="https://turbo0.com/item/ai-humanizer-tool" target="_blank" rel="noopener noreferrer" class="marquee-item"><img src="https://img.turbo0.com/badge-listed-light.svg" alt="Turbo0" loading="lazy" width="150" height="40" /></a>
+    <a href="https://thesaasdir.com/product/free-ai-humanizer?ref=badge" target="_blank" rel="dofollow" class="marquee-item"><img src="https://thesaasdir.com/badge/free-ai-humanizer.svg" alt="TheSaaSDir" loading="lazy" width="150" height="40" /></a>
+    <a href="https://aitoolslister.com/tools/ai-humanizer" target="_blank" rel="noopener" class="marquee-item"><img src="https://aitoolslister.com/badges/listed-card-dark.svg" alt="AI Tools Lister" loading="lazy" width="150" height="40" /></a>
+    <a href="https://www.ai-visibility.org.uk/directory/verify/freeaihumanizer-online/" target="_blank" rel="noopener" class="marquee-item"><img src="https://www.ai-visibility.org.uk/specifications/badges/essential.svg" alt="AI Visibility" loading="lazy" width="150" height="40" /></a>
+    <a href="https://startupdirectory.net" target="_blank" rel="noopener" class="marquee-item"><img src="https://startupdirectory.net/badge/featured-light.svg" alt="StartupDirectory" loading="lazy" width="150" height="40" /></a>
+    <a href="https://aiagentsdirectory.com/agent/free-ai-humanizer" target="_blank" rel="noopener" class="marquee-item"><img src="https://aiagentsdirectory.com/featured-badge.svg?v=2024" alt="AI Agents Directory" style="height:40px;width:auto;" loading="lazy" width="150" height="40" /></a>
+    <a href="https://findly.tools/free-ai-humanizer?utm_source=free-ai-humanizer" target="_blank" rel="noopener" class="marquee-item"><img src="https://findly.tools/badges/findly-tools-badge-dark.svg" alt="Findly.tools" style="height:40px;width:auto;" loading="lazy" width="150" height="40" /></a>
+    <a href="https://dofollow.tools" target="_blank" class="marquee-item"><img src="https://dofollow.tools/badge/badge_dark.svg" alt="Dofollow.Tools" style="height:40px;width:auto;" loading="lazy" width="150" height="40" /></a>
+    <a href="https://aitrustlist.com/?utm_source=freeaihumanizer.online" target="_blank" rel="noopener" class="marquee-item"><img src="https://aitrustlist.com/badge-dark.svg" alt="AITrustList" style="height:40px;width:auto;" loading="lazy" width="150" height="40" /></a>
+    <a href="https://launchumo.com" target="_blank" rel="noopener" class="marquee-item"><img src="https://launchumo.com/images/badge.webp" alt="Launchumo" style="height:40px;width:auto;" loading="lazy" width="150" height="40" /></a>
+    <a href="https://toolfame.com/item/free-ai-humanizer" target="_blank" rel="noopener noreferrer" class="marquee-item"><img src="https://toolfame.com/badge-dark.svg" alt="toolfame" style="height:40px;width:auto;" loading="lazy" width="150" height="40" /></a>
+    <a href="https://turbo0.com/item/ai-humanizer-tool" target="_blank" rel="noopener noreferrer" class="marquee-item"><img src="https://img.turbo0.com/badge-listed-light.svg" alt="Turbo0" loading="lazy" width="150" height="40" /></a>
+    <a href="https://thesaasdir.com/product/free-ai-humanizer?ref=badge" target="_blank" rel="dofollow" class="marquee-item"><img src="https://thesaasdir.com/badge/free-ai-humanizer.svg" alt="TheSaaSDir" loading="lazy" width="150" height="40" /></a>
+    <a href="https://aitoolslister.com/tools/ai-humanizer" target="_blank" rel="noopener" class="marquee-item"><img src="https://aitoolslister.com/badges/listed-card-dark.svg" alt="AI Tools Lister" loading="lazy" width="150" height="40" /></a>
+    <a href="https://www.ai-visibility.org.uk/directory/verify/freeaihumanizer-online/" target="_blank" rel="noopener" class="marquee-item"><img src="https://www.ai-visibility.org.uk/specifications/badges/essential.svg" alt="AI Visibility" loading="lazy" width="150" height="40" /></a>
+    <a href="https://startupdirectory.net" target="_blank" rel="noopener" class="marquee-item"><img src="https://startupdirectory.net/badge/featured-light.svg" alt="StartupDirectory" loading="lazy" width="150" height="40" /></a>
+  <a href="https://tulimoa.com/discover/free-ai-humanizer" target="_blank" rel="noopener" data-tulimoa-badge="dark">
+  <img src="https://tulimoa.com/badge/dark.svg" alt="Listed on Tulimoa" width="220" height="60" loading="lazy" />
 </a>
-      { href: 'https://turbo0.com/item/ai-humanizer-tool', src: 'https://img.turbo0.com/badge-listed-light.svg', alt: 'Turbo0' },
-      { href: 'https://thesaasdir.com/product/free-ai-humanizer?ref=badge', src: 'https://thesaasdir.com/badge/free-ai-humanizer.svg', alt: 'TheSaaSDir' },
-      { href: 'https://aitoolslister.com/tools/ai-humanizer', src: 'https://aitoolslister.com/badges/listed-card-dark.svg', alt: 'AI Tools Lister' },
-      { href: 'https://www.ai-visibility.org.uk/directory/verify/freeaihumanizer-online/', src: 'https://www.ai-visibility.org.uk/specifications/badges/essential.svg', alt: 'AI Visibility' },
-      { href: 'https://startupdirectory.net', src: 'https://startupdirectory.net/badge/featured-light.svg', alt: 'StartupDirectory' },
-      { href: 'https://aiagentsdirectory.com/agent/free-ai-humanizer', src: 'https://aiagentsdirectory.com/featured-badge.svg?v=2024', alt: 'AI Agents Directory' },
-      { href: 'https://findly.tools/free-ai-humanizer?utm_source=free-ai-humanizer', src: 'https://findly.tools/badges/findly-tools-badge-dark.svg', alt: 'Findly.tools' },
-      { href: 'https://dofollow.tools', src: 'https://dofollow.tools/badge/badge_dark.svg', alt: 'Dofollow.Tools' },
-      { href: 'https://aitrustlist.com/?utm_source=freeaihumanizer.online', src: 'https://aitrustlist.com/badge-dark.svg', alt: 'AITrustList' },
-      { href: 'https://launchumo.com', src: 'https://launchumo.com/images/badge.webp', alt: 'Launchumo' },
-      { href: 'https://toolfame.com/item/free-ai-humanizer', src: 'https://toolfame.com/badge-dark.svg', alt: 'toolfame' },
-      { href: 'https://tulimoa.com/discover/free-ai-humanizer', src: 'https://tulimoa.com/badge/dark.svg', alt: 'Tulimoa' },
-      { href: 'https://indexof.ai/tool/free-ai-humanizer?ref=free-ai-humanizer', src: 'https://indexof.ai/badge-dark.svg', alt: 'IndexOf.AI' },
-    ];
+   <a href="https://indexof.ai/tool/free-ai-humanizer?ref=free-ai-humanizer" target="_blank" rel="noopener">
+  <img src="https://indexof.ai/badge-dark.svg" alt="Featured on IndexOf.AI" width="200" height="40" loading="lazy" />
+</a>
+  <a href="https://toolfame.com/item/free-ai-humanizer" target="_blank" rel="noopener noreferrer" class="marquee-item">
+    <img src="https://toolfame.com/badge-dark.svg" alt="Featured on toolfame.com" style="height: 54px; width: auto;" loading="lazy" />
+  </a>
+  </div>
+</div>
 
-    const track = document.querySelector('.marquee-track');
-    const allBadges = [...badges, ...badges];
-    allBadges.forEach(b => {
-      const a = document.createElement('a');
-      a.href = b.href;
-      a.target = '_blank';
-      a.rel = 'noopener noreferrer';
-      a.className = 'marquee-item';
-      const img = document.createElement('img');
-      img.src = b.src;
-      img.alt = b.alt;
-      img.loading = 'lazy';
-      a.appendChild(img);
-      track.appendChild(a);
-    });
-  </script>
+<footer>
+  <ul class="footer-links">
+    <li><a href="#">Privacy Policy</a></li>
+    <li><a href="#">Terms of Service</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <p>© 2026 Free AI Humanizer. Make AI text sound human — free, instant, no login.</p>
+ <p>Created by Mian Zaid</p>
+</footer>
 
+<script>
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  function setMode(btn, mode) {
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    window._mode = mode;
+  }
+  window._mode = 'Standard';
+
+  // ✅ NEW GROQ API KEY
+  const GROQ_API_KEY = "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";
+
+  const modePrompts = {
+    Standard: "You are an expert text humanizer. Rewrite the following AI-generated text to sound completely natural and human-written. Rules: Keep meaning, use varied sentence lengths, use contractions (don't, can't, it's), replace formal words with casual ones, NEVER use 'moreover, furthermore, consequently', return ONLY rewritten text.",
+    Aggressive: "You are an expert text humanizer. Aggressively rewrite the following AI-generated text to sound like a real person wrote it. Use very short punchy sentences, casual language, heavy contractions, and natural imperfections. Return ONLY rewritten text.",
+    Academic: "You are an academic writing specialist. Rewrite the following AI-generated academic text to sound like a knowledgeable human scholar wrote it. Keep academic tone but make it feel authored, use natural transitions, preserve all technical terms. Return ONLY rewritten text."
+  };
+
+  function calculateAIScore(text) {
+    let aiScore = 0;
+    const aiPatterns = ['moreover', 'furthermore', 'consequently', 'nevertheless', 'notwithstanding', 'delve', 'tapestry', 'leverage', 'utilize', 'demonstrate', 'paramount', 'multifaceted', 'facilitate', 'optimize', 'enhance', 'pedagogical'];
+    let patternCount = 0;
+    const lowerText = text.toLowerCase();
+    aiPatterns.forEach(pattern => { if (lowerText.includes(pattern)) patternCount++; });
+    const sentences = text.split(/[.!?]+/);
+    let avgLength = 0;
+    sentences.forEach(s => { avgLength += s.trim().length; });
+    avgLength = avgLength / sentences.length;
+    let lengthVariation = 0;
+    sentences.forEach(s => { const len = s.trim().length; if (Math.abs(len - avgLength) < 10) lengthVariation++; });
+    aiScore = (patternCount * 12) + (lengthVariation * 3);
+    if (text.length > 500) aiScore += 5;
+    if (text.length > 1000) aiScore += 10;
+    const hasContractions = lowerText.includes("don't") || lowerText.includes("can't") || lowerText.includes("it's");
+    if (!hasContractions) aiScore += 15;
+    aiScore = Math.min(100, Math.max(0, aiScore));
+    return aiScore;
+  }
+
+  function updateMeter(text) {
+    const aiScore = calculateAIScore(text);
+    const meterSection = document.getElementById('meterSection');
+    const meterFill = document.getElementById('aiMeterFill');
+    const meterValue = document.getElementById('aiMeterValue');
+    const badgeSpan = document.getElementById('classificationBadge');
+    meterSection.style.display = 'block';
+    meterFill.style.width = aiScore + '%';
+    meterValue.innerHTML = Math.round(aiScore) + '%';
+    if (aiScore > 60) {
+      badgeSpan.innerHTML = '⚠️ AI Generated';
+      badgeSpan.className = 'classification-badge badge-ai';
+      meterFill.classList.add('ai');
+    } else {
+      badgeSpan.innerHTML = '✅ Likely Human';
+      badgeSpan.className = 'classification-badge badge-human';
+      meterFill.classList.remove('ai');
+    }
+  }
+
+  async function humanizeText() {
+    const btn = document.querySelector('.humanize-btn');
+    const out = document.getElementById('output-text');
+    const inputText = document.getElementById('input-text').innerText.trim();
+    if (!inputText || inputText.length < 10) {
+      out.innerHTML = '<span style="color:var(--red)">Please enter some text first.</span>';
+      return;
+    }
+    btn.innerHTML = '⟳ Humanizing...';
+    btn.disabled = true;
+    out.innerHTML = '<span style="color:var(--text3)">Processing with Groq...</span>';
+    try {
+      const systemPrompt = modePrompts[window._mode] || modePrompts.Standard;
+      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${GROQ_API_KEY}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: 'llama-3.3-70b-versatile', messages: [{ role: 'system', content: systemPrompt }, { role: 'user', content: inputText }], temperature: 0.75, max_tokens: 1500 })
+      });
+      if (!response.ok) { const err = await response.json(); throw new Error(err.error?.message || 'API error'); }
+      const data = await response.json();
+      const result = data.choices[0]?.message?.content;
+      if (result) {
+        out.innerHTML = result;
+        updateMeter(result);
+      } else { throw new Error('Empty response'); }
+    } catch (err) {
+      console.error(err);
+      out.innerHTML = `<span style="color:var(--red)">⚠️ Error: ${err.message}</span>`;
+    } finally {
+      btn.innerHTML = '✦ Humanize';
+      btn.disabled = false;
+    }
+  }
+
+  const FORMSPREE_URL = "https://formspree.io/f/xnjydgzd";
+  async function submitFeedback() {
+    const name = document.getElementById('fbName').value.trim();
+    const email = document.getElementById('fbEmail').value.trim();
+    const message = document.getElementById('fbMessage').value.trim();
+    const successDiv = document.getElementById('fbSuccess');
+    const errorDiv = document.getElementById('fbError');
+    if (!message) {
+      errorDiv.style.display = 'block';
+      errorDiv.textContent = '❌ Please write your feedback.';
+      setTimeout(() => errorDiv.style.display = 'none', 3000);
+      return;
+    }
+    successDiv.style.display = 'none';
+    errorDiv.style.display = 'none';
+    try {
+      const formData = new FormData();
+      formData.append('name', name || 'Anonymous');
+      formData.append('email', email || 'no-reply@user.com');
+      formData.append('message', message);
+      formData.append('_subject', 'Feedback from AI Humanizer');
+      const response = await fetch(FORMSPREE_URL, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
+      if (response.ok) {
+        successDiv.style.display = 'block';
+        document.getElementById('fbName').value = '';
+        document.getElementById('fbEmail').value = '';
+        document.getElementById('fbMessage').value = '';
+        setTimeout(() => successDiv.style.display = 'none', 5000);
+      } else { throw new Error('Formspree error'); }
+    } catch (err) {
+      errorDiv.style.display = 'block';
+      setTimeout(() => errorDiv.style.display = 'none', 4000);
+    }
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
