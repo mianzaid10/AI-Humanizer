@@ -3,7 +3,7 @@ Specification: [AI Visibility](https://www.ai-visibility.org.uk/)
 # Free AI Humanizer
 
 ## Quick Summary
-Free AI tool that rewrites ChatGPT, Gemini, and Claude text to sound human. Bypass Turnitin, GPTZero. No login. No cost. Instant results.
+Free AI tool that rewrites ChatGPT, Gemini, and Claude text to sound human. Bypasses AI content detectors. No login. No cost. Instant results.
 
 ## Core Pages
 - Home: https://freeaihumanizer.online/
@@ -29,5 +29,5 @@ Yes, completely free with no signup or credit card required.
 ### Which AI models does it work with?
 ChatGPT, Google Gemini, Claude, Llama, and any AI text generator.
 
-### Does it bypass Turnitin?
-Yes, it's designed to bypass Turnitin, GPTZero, and Originality.ai.
+### Does it bypass AI content detectors?
+Yes, it's designed to bypass popular AI content detection tools.
