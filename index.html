@@ -1607,7 +1607,16 @@
       const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${GROQ_API_KEY}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: 'llama-3.3-70b-versatile', messages: [{ role: 'system', content: systemPrompt }, { role: 'user', content: inputText }], temperature: 0.75, max_tokens: 1500 })
+        body: JSON.stringify({
+          model: 'openai/gpt-oss-120b',
+          messages: [
+            { role: 'user', content: systemPrompt + '\n\nTEXT TO REWRITE:\n"""\n' + inputText + '\n"""' }
+          ],
+          temperature: 0.7,
+          max_completion_tokens: 4000,
+          reasoning_effort: 'low',
+          reasoning_format: 'hidden'
+        })
       });
       if (!response.ok) { const err = await response.json(); throw new Error(err.error?.message || 'API error'); }
       const data = await response.json();

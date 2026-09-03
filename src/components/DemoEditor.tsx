@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Copy, Check, Wand2, AlertTriangle, Shield, Brain } from 'lucide-react';
 
-const GROQ_API_KEY = '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';
+const GROQ_API_KEY = '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';
 
 const modePrompts: Record<string, string> = {
   Standard:
@@ -79,13 +79,14 @@ export default function DemoEditor() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          model: 'llama-3.3-70b-versatile',
+          model: 'openai/gpt-oss-120b',
           messages: [
-            { role: 'system', content: modePrompts[mode] },
-            { role: 'user', content: text },
+            { role: 'user', content: `${modePrompts[mode]}\n\nTEXT TO REWRITE:\n"""\n${text}\n"""` },
           ],
-          temperature: 0.75,
-          max_tokens: 1500,
+          temperature: 0.7,
+          max_completion_tokens: 4000,
+          reasoning_effort: 'low',
+          reasoning_format: 'hidden',
         }),
       });
 
