@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Copy, Check, Wand2, AlertTriangle, Shield, Brain } from 'lucide-react';
 
-const GROQ_API_KEY = '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';
+const GROQ_API_KEY = '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';
 
 const modePrompts: Record<string, string> = {
   Standard:
