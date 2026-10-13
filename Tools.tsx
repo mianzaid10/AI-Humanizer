@@ -5,7 +5,7 @@ import {
   FileText, ScanLine, Languages
 } from 'lucide-react';
 
-const GROQ_API_KEY = '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';
+const GROQ_API_KEY = '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';
 
 const modePrompts: Record<string, string> = {
   Standard: "You are an expert text humanizer. Rewrite the following AI-generated text to sound completely natural and human-written. Keep meaning, use varied sentence lengths, use contractions, replace formal words with casual ones. NEVER use 'moreover, furthermore, consequently'. Return ONLY rewritten text.",
